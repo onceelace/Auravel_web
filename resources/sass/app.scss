@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~admin-lte/dist/css/adminlte.css';
+
+//Font-awesome
+$fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.router-link-exact-active{
+    background-color: #3490dc;
+    color: white !important;
+    font-weight: bold;
+}
+
+.wrapper{
+    background-color: #f4f6f9;
+}

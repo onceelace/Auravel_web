@@ -7,6 +7,28 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import { Form, HasError, AlertError } from 'vform'
+
+window.Form = Form
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+import objectToFormData from 'object-to-formdata'
+window.objectToFormData = objectToFormData
+
+
+let routes = [
+    { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
+    { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
+]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,4 +51,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });
