@@ -19,10 +19,13 @@ Vue.use(VueRouter)
 import objectToFormData from 'object-to-formdata'
 window.objectToFormData = objectToFormData
 
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
 
 let routes = [
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
+    { path: '/admin/roomtypes/edit/:id', component: require('./components/Admin/RoomType/EditRoomType.vue').default },
 ]
 
 const router = new VueRouter({

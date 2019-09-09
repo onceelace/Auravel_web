@@ -55,8 +55,9 @@
                             <has-error :form="form" field="rate"></has-error>
                         </div>
                         <div class="form-group">
-                            <label>Image</label>
-                            <!-- <input v-el="avatar" type="file" name="avatar" id="avatar" v-on:change="upload"> -->
+                            <label>Image</label><br>
+                            <b-img thumbnail rounded fluid v-show="withImage" :src="url" alt="Image 1" style="height: 50%;"></b-img>
+                            <br>
                             <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
                             <has-error :form="form" field="room_image"></has-error>
                         </div>
@@ -82,7 +83,9 @@
                     min_occupant: '',
                     max_occupant: '',
                     room_image: null
-                })
+                }),
+                url: '',
+                withImage: false
             }
         },
         methods: {
@@ -144,6 +147,8 @@
             },
             handleFileUpload(){
                 this.imageFile = this.$refs.file.files[0];
+                this.url = URL.createObjectURL(this.imageFile);
+                this.withImage = true;
                 //console.log(this.imageFile);
                 //this.form.room_image = this.imageFile;
                 //this.form.set('room_image');

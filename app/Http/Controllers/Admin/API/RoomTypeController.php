@@ -50,13 +50,13 @@ class RoomTypeController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->room_image;
         //
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'roomsize' => 'required|string|max:191',
             'description' => 'required',
-            'highlights' => 'required',
-            'min_occupant' => 'required|integer|gt:1',
+            'min_occupant' => 'required|integer|gt:0',
             'max_occupant' => 'required|integer|gt:1',
             'rate' => 'required',
         ]);
@@ -88,6 +88,7 @@ class RoomTypeController extends Controller
     public function show($id)
     {
         //
+        return RoomType::find($id);
     }
 
     /**
@@ -110,7 +111,49 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request->room_image;
+        $room_type = RoomType::find($id);
+
+        $this->validate($request,[
+            'name' => 'required|string|max:191|unique:room_types,name,'.$room_type->id,
+            'roomsize' => 'required|string|max:191',
+            'description' => 'required',
+            'min_occupant' => 'required|integer|gt:0',
+            'max_occupant' => 'required|integer|gt:1',
+            'rate' => 'required',
+        ]);
+
+        //return $request->isChangedImage;
+        $imageName = $request->old_image;
+        if($request->hasFile('room_image'))
+        {
+            $imageName = time().'.'.$request->room_image->getClientOriginalExtension();
+            $request->room_image->move(public_path('images/roomtype'), $imageName);
+
+             $imageName = '/images/roomtype/'.$imageName;
+
+            //return $imageName;
+        }
+        //return 'wala';
+
+
+
+
+        $room_type->update([
+            'name' => $request->name,
+            'roomsize' => $request->roomsize,
+            'description' => $request->description,
+            'highlights' => $request->highlights,
+            'services' => $request->services,
+            'min_occupant' => $request->min_occupant,
+            'max_occupant' => $request->max_occupant,
+            'rate' => $request->rate,
+            'room_image' => $imageName,
+        ]);
+
+        return ['message' => 'Room Type has been Updated'];
+
+
     }
 
     /**

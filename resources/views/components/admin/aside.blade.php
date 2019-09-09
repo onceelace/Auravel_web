@@ -31,29 +31,19 @@
                     </p>
                 </router-link>
             </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                Room Management
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item ml-2">
-                    <router-link to="/admin/roomtypes" class="nav-link">
-                    <i class="nav-icon fas fa-warehouse"></i>
-                    <p>Room Types</p>
-                    </router-link>
-                </li>
-                <li class="nav-item ml-2">
-                    <router-link to="/users" class="nav-link">
-                    <i class="fas fa-users nav-icon"></i>
-                    <p>Rooms</p>
-                    </router-link>
-                </li>
-            </ul>
-          </li>
+        <li class="nav-header">Room Management</li>
+        <li class="nav-item">
+            <router-link to="/admin/roomtypes" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Room Types</p>
+            </router-link>
+        </li>
+        <li class="nav-item mb-2">
+            <router-link to="/admin/rooms" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Rooms</p>
+            </router-link>
+        </li>
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>

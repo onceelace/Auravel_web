@@ -14,6 +14,10 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
 
+@import './node_modules/bootstrap/scss/bootstrap';
+@import './node_modules/bootstrap-vue/src/index.scss';
+
+
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -26,5 +30,23 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 }
 
 .wrapper{
-    background-color: #f4f6f9;
+    background-color: #fff;
+}
+
+.content-wrapper{
+    background-color: #fff;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+    position: relative !important;
+    padding: .75rem 1.25rem !important;
+    border-top-left-radius: .25rem !important;
+    border-top-right-radius: .25rem !important;
+}
+
+.b-table-sticky-header {
+
+    min-height: 300px;
 }
