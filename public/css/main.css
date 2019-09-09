@@ -1,0 +1,64 @@
+li.nav-item {
+    display: inline-block;
+    clear: both;
+    position: inherit;
+    z-index: 10;
+}
+a.nav-link {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #2a303b;
+    font-weight: 500;
+    padding: 0 400px;
+    margin: 0 10px;
+}
+
+.classy-nav-container a:hover, .classy-nav-container a:focus {
+    font-size: 16px;
+}
+
+.mt-80{
+    margin-top: 80px;
+}
+.mb-80{
+    margin-bottom: 80px;
+}
+
+.mt-50{
+    margin-top: 50px;
+}
+.mb-50{
+    margin-bottom: 50px;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+    position: relative !important;
+    padding: .75rem 1.25rem !important;
+    border-top-left-radius: .25rem !important;
+    border-top-right-radius: .25rem !important;
+}
+
+.green-btn{
+    padding: 0px 30px;
+    background-color: #3D9649;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 0;
+}
+
+.green-btn:hover{
+    background-color: #E7C715;
+    color: #000000;
+}
+
+a.btn.btn-link{
+    color: #2a303b;
+}
+a.btn.btn-link:hover{
+    text-decoration: none;
+}

@@ -20,14 +20,17 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea v-model="form.description" name="description"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
+                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.description"></vue-editor>
+                            <!-- <ckeditor :editor="editor" v-model="form.description" :config="editorConfig" tag-name="textarea"></ckeditor> -->
+                            <!-- <textarea v-model="form.description" name="description"
+                                class="form-control" :class="{ 'is-invalid': form.errors.has('description') }"></textarea> -->
                             <has-error :form="form" field="description"></has-error>
                         </div>
                         <div class="form-group">
                             <label>Highlights</label>
-                            <textarea v-model="form.highlights" name="highlights"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('highlights') }"></textarea>
+                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.highlights"></vue-editor>
+                            <!-- <textarea v-model="form.highlights" name="highlights"
+                                class="form-control" :class="{ 'is-invalid': form.errors.has('highlights') }"></textarea> -->
                             <has-error :form="form" field="highlights"></has-error>
                         </div>
                         <div class="form-group">
@@ -85,7 +88,8 @@
                     room_image: null
                 }),
                 url: '',
-                withImage: false
+                withImage: false,
+
             }
         },
         methods: {
@@ -144,6 +148,29 @@
                 //     });
 
                 console.log(this.form);
+            },
+            handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
+                // An example of using FormData
+                // NOTE: Your key could be different such as:
+                // formData.append('file', file)
+
+                var formData = new FormData();
+                formData.append("image", file);
+
+                axios({
+                    url: "/api/admin/content/image",
+                    method: "POST",
+                    data: formData
+                })
+                .then(result => {
+                    let url = result.data.url; // Get url from response
+                    console.log(result);
+                    Editor.insertEmbed(cursorLocation, "image", url);
+                    resetUploader();
+                })
+                .catch(err => {
+                    console.log(err);
+                });
             },
             handleFileUpload(){
                 this.imageFile = this.$refs.file.files[0];

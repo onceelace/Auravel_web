@@ -2,66 +2,67 @@
     <div class="classy-nav-container breakpoint-off">
         <div class="container-fluid">
             <!-- Classy Menu -->
-            <nav class="classy-navbar flex-end" id="robertoNav">
-
-                <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="./img/core-img/B.png" width="53%" alt=""></a>
-
+            <nav class="navbar navbar-expand-lg classy-navbar flex-end" id="robertoNav">
+                <a class="nav-brand" href="index.html"><img src="{{ asset('img/core-img/B.png') }}" width="53%" alt=""></a>
                 <!-- Navbar Toggler -->
-                <div class="classy-navbar-toggler">
+                <div class="classy-navbar-toggler classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
                 </div>
 
-                <!-- Menu -->
-                <div class="classy-menu">
+                <div class="collapse navbar-collapse classy-menu" id="navbarSupportedContent">
                     <!-- Menu Close Button -->
                     <div class="classycloseIcon">
                         <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                     </div>
-                    <!-- Nav Start -->
-                    <div class="classynav">
-                        <ul id="nav">
-                        <li class="active"><a href="{{route('homepage')}}">Home</a></li>
-                            <li><a href="{{route('rooms')}}">Rooms</a></li>
-                            <li><a href="#">3D Virtual Tour</a></li>
-                            <li><a href="./contact.html">Facilities</a></li>
-                            <li><a href="./about.html">About Us</a></li>
-                                <!--
-                                <ul class="dropdown">
-                                    <li><a href="./index.html">- Home</a></li>
-                                    <li><a href="./room.html">- Rooms</a></li>
-                                    <li><a href="./single-room.html">- Single Rooms</a></li>
-                                    <li><a href="./about.html">- About Us</a></li>
-                                    <li><a href="./blog.html">- Blog</a></li>
-                                    <li><a href="./single-blog.html">- Single Blog</a></li>
-                                    <li><a href="./contact.html">- Contact</a></li>
-                                    <li><a href="#">- Dropdown</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">- Dropdown Item</a></li>
-                                            <li><a href="#">- Dropdown Item</a></li>
-                                            <li><a href="#">- Dropdown Item</a></li>
-                                            <li><a href="#">- Dropdown Item</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                -->
-                        </ul>
+                    <ul class="navbar-nav mr-auto" id="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('homepage')}}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('home.rooms')}}">Rooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">3D Virtual Tour</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Facilities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} <span class="caret"></span>
+                                </a>
 
-                        <!-- Search -->
-                        <!--
-                        <div class="search-btn ml-4">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </div>
-                        -->
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                        <!-- Book Now -->
-                        <div class="book-now-btn ml-3 ml-lg-5">
-                            <a href="#">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                        </div>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                    <div class="book-now-btn ml-3 ml-lg-5">
+                        <a href="#">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                     </div>
-                    <!-- Nav End -->
                 </div>
-            </nav>
+			</nav>
         </div>
     </div>
 </div>

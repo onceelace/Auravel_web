@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\RoomType;
 class HomeController extends Controller
 {
     /**
@@ -26,8 +26,16 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function rooms()
+    public function room()
     {
-        return view('rooms');
+        $roomtypes = RoomType::orderBy('rate')->paginate(5);
+        return view('home.room')->with('roomtypes', $roomtypes);
+    }
+
+    public function roomdetail($id)
+    {
+        $roomtype = RoomType::find($id);
+
+        return view('home.roomdetail')->with('roomtype', $roomtype);
     }
 }

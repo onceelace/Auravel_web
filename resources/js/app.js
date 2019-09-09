@@ -22,6 +22,12 @@ window.objectToFormData = objectToFormData
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
+import Vue from "vue";
+import Vue2Editor from "vue2-editor";
+
+Vue.use(Vue2Editor);
+
+
 let routes = [
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },

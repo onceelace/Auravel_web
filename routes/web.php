@@ -16,7 +16,9 @@
 // });
 
 Auth::routes();
-
+Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/room', 'HomeController@room')->name('home.rooms');
+Route::get('/room/{id}', 'HomeController@roomdetail')->name('home.rooms.details');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function() {
