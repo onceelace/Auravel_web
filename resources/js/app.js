@@ -32,6 +32,9 @@ let routes = [
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
     { path: '/admin/roomtypes/edit/:id', component: require('./components/Admin/RoomType/EditRoomType.vue').default },
+
+    
+    { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 ]
 
 const router = new VueRouter({

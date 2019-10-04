@@ -18,8 +18,14 @@
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('homepage');
 Route::get('/room', 'HomeController@room')->name('home.rooms');
+Route::post('/room', 'HomeController@room')->name('home.rooms');
 Route::get('/room/{id}', 'HomeController@roomdetail')->name('home.rooms.details');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+
+
+//CHECK IN
+// Route::get('/find/room', 'HomeController@checkroom')->name('room.check');
+// Route::post('/find/room', 'HomeController@checkroom')->name('room.check');
 
 Route::prefix('admin')->group(function() {
 
@@ -38,7 +44,7 @@ Route::prefix('admin')->group(function() {
 
 });
 
-Route::get('/rooms', 'HomeController@rooms')->name('rooms');
+// Route::get('/rooms', 'HomeController@rooms')->name('rooms');
 Route::get('/', 'HomeController@index')->name('homepage');
 
 

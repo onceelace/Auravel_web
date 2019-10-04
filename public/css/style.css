@@ -1157,3 +1157,35 @@ text-shadow: none;
 	}
 
 	
+
+	.form-control.is-invalid, .was-validated .form-control:invalid {
+		border-color: #dc3545 !important;
+	}
+
+	.hotel-search-form-area .hotel-search-form {
+		height: 160px;
+	}
+
+	.hotel-search-form-area .hotel-search-form .form-control {
+		margin-bottom: 0 !important;
+	}
+
+	.roberto-cta-area {
+		z-index: -1 !important;
+	}
+
+	.partner-area {
+		z-index: -1 !important;
+	}
+	.footer-area {
+		z-index: -1 !important;
+	}
+
+	.room-feature{
+		width: 250px !important;
+	}
+
+	.section-padding-50-0 {
+		padding-top: 50px;
+		padding-bottom: 0;
+	}
