@@ -5,7 +5,7 @@
                 <div class="col-12 col-md-7">
                     <div class="cta-text mb-50">
                         <h2>Contact us now!</h2>
-                        <h6>Contact (+12) 345-678-9999 to book directly or for advice</h6>
+                        <h6>Contact (049) 503-0579 / +63 998-589-4036</h6>
                     </div>
                 </div>
                 <div class="col-12 col-md-5 text-right">

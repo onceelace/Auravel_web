@@ -17,9 +17,8 @@ class CreateRoomTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('roomsize');
-            $table->longText('highlights')->nullable();
+            $table->longText('amenities')->default("");
             $table->longText('description');
-            $table->longText('services')->nullable();
             $table->decimal('rate', 15, 2);
             $table->integer('min_occupant');
             $table->integer('max_occupant');

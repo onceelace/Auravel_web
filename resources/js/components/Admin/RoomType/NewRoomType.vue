@@ -21,23 +21,12 @@
                         <div class="form-group">
                             <label>Description</label>
                             <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.description"></vue-editor>
-                            <!-- <ckeditor :editor="editor" v-model="form.description" :config="editorConfig" tag-name="textarea"></ckeditor> -->
-                            <!-- <textarea v-model="form.description" name="description"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('description') }"></textarea> -->
                             <has-error :form="form" field="description"></has-error>
                         </div>
                         <div class="form-group">
-                            <label>Highlights</label>
-                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.highlights"></vue-editor>
-                            <!-- <textarea v-model="form.highlights" name="highlights"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('highlights') }"></textarea> -->
-                            <has-error :form="form" field="highlights"></has-error>
-                        </div>
-                        <div class="form-group">
-                            <label>Services</label>
-                            <input v-model="form.services" type="text" name="services"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('services') }">
-                            <has-error :form="form" field="services"></has-error>
+                            <label>Amenities</label>
+                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.amenities"></vue-editor>
+                            <has-error :form="form" field="amenities"></has-error>
                         </div>
                         <div class="form-group">
                             <label>Minimum Occupant</label>
@@ -82,7 +71,7 @@
                     name: '',
                     roomsize: '',
                     description: '',
-                    highlights: '',
+                    amenities: '',
                     min_occupant: '',
                     max_occupant: '',
                     room_image: null
@@ -104,17 +93,7 @@
                     headers: { 'content-type': 'multipart/form-data' }
                 }
                 this.form.room_image = this.imageFile;
-
                 console.log(this.form);
-
-                // axios.post('/api/admin/roomtype', this.form, config)
-                // .then(function (response) {
-                //     currentObj.success = response.data.success;
-                // })
-                // .catch(function (error) {
-                //     currentObj.output = error;
-                // });
-
                 this.form.submit('post', '/api/admin/roomtype', {
                     // Transform form data to FormData
                     transformRequest: [function (data, headers) {
@@ -125,29 +104,21 @@
                         // console.log(e)
                     }
                 })
-                .then(({ data }) => {
+                .then(({data}) => {
+                    this.$Progress.finish();
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Room Type has been created'
+                    })
                     this.$router.push('/admin/roomtypes');
-                })
+                }, (response) => {
+                    this.$Progress.fail();
 
-                // this.form.post('/api/admin/roomtype',config)
-                //     .then(({userdata}) => {
-                //         // this.$Progress.finish();
-                //         // Toast.fire({
-                //         //     type: 'success',
-                //         //     title: 'User has been saved'
-                //         // })
-                //         //this.$router.push('/admin/roomtypes');
-                //         console.log(userdata);
-                //     }, (response) => {
-                //         // this.$Progress.fail();
-
-                //         // Toast.fire({
-                //         //     type: 'error',
-                //         //     title: 'Failed to save the user'
-                //         // })
-                //     });
-
-                console.log(this.form);
+                    Toast.fire({
+                        type: 'error',
+                        title: 'Failed to save the room type'
+                    })
+                });
             },
             handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
                 // An example of using FormData

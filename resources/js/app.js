@@ -27,12 +27,49 @@ import Vue2Editor from "vue2-editor";
 
 Vue.use(Vue2Editor);
 
+import VueProgressBar from 'vue-progressbar'
+const vueProgressBarOption = {
+    color: '#bffaf3',
+    failedColor: '#874b4b',
+    thickness: '5px',
+    transition: {
+        speed: '0.2s',
+        opacity: '0.6s',
+        termination: 300
+    },
+    autoRevert: true,
+    location: 'left',
+    inverse: false,
+    location: 'top'
+}
+Vue.use(VueProgressBar, vueProgressBarOption)
+
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
+window.Swal = Swal;
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+})
+window.Toast = Toast;
+
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
+// Init plugin
+Vue.use(Loading);
 
 let routes = [
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
     { path: '/admin/roomtypes/edit/:id', component: require('./components/Admin/RoomType/EditRoomType.vue').default },
 
+    { path: '/admin/rooms', component: require('./components/Admin/Room/Rooms.vue').default },
+    { path: '/admin/room/new', component: require('./components/Admin/Room/NewRoom.vue').default },
+    { path: '/admin/room/edit/:id', component: require('./components/Admin/Room/EditRoom.vue').default },
     
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 ]

@@ -5,33 +5,29 @@
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-footer-widget mb-80">
                     <!-- Footer Logo -->
-                    <a href="#" class="footer-logo"><img src="{{ asset('img/core-img/logo2.png') }}" alt=""></a>
+                    <a href="#" class="footer-logo"><img src="{{ asset('img/core-img/B.png') }}" alt=""></a>
 
-                    <h4>+12 345-678-9999</h4>
-                    <span>Info.colorlib@gmail.com</span>
-                    <span>856 Cordia Extension Apt. 356, Lake Deangeloburgh, South Africa</span>
+                    <h4>(049) 503-0579</h4>
+                    <span>auravelresort@gmail.com</span>
+                    <span>Maharlika Hiway, Brgy. San Francisco, Calihan, San Pablo City, Laguna, 4000</span>
                 </div>
             </div>
 
-            <!-- Single Footer Widget Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
+            <!-- <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-footer-widget mb-80">
-                    <!-- Widget Title -->
                     <h5 class="widget-title">Our Blog</h5>
 
-                    <!-- Single Blog Area -->
                     <div class="latest-blog-area">
                         <a href="#" class="post-title">Freelance Design Tricks How</a>
                         <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
                     </div>
 
-                    <!-- Single Blog Area -->
                     <div class="latest-blog-area">
                         <a href="#" class="post-title">Free Advertising For Your Online</a>
                         <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Single Footer Widget Area -->
             <div class="col-12 col-sm-4 col-lg-2">
@@ -42,7 +38,7 @@
                     <!-- Footer Nav -->
                     <ul class="footer-nav">
                         <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Our Room</a></li>
+                        <li><a href="{{route('homepage')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> Our Room</a></li>
                         <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Career</a></li>
                         <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQs</a></li>
                     </ul>
@@ -75,7 +71,7 @@
                 <!-- Copywrite Text -->
                 <div class="copywrite-text">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>

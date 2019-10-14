@@ -25,7 +25,7 @@
                     <div class="col-4 col-md-1">
                         <label for="adults">Adult</label>
                         <select name="adults" id="adults" class="form-control @error('adults') is-invalid @enderror" required autocomplete="adults" autofocus>
-                            @for ($i = 1; $i <= 10; $i++)
+                            @for ($i = 1; $i <= 6; $i++)
                                 <option value="{{ $i }}"> {{ $i }} </option>
                             @endfor
                         </select>
@@ -33,7 +33,7 @@
                     <div class="col-4 col-md-2 col-lg-1">
                         <label for="children">Children</label>
                         <select name="children" id="children" class="form-control">
-                            @for ($i = 0; $i <= 10; $i++)
+                            @for ($i = 0; $i <= 6; $i++)
                                 <option value="{{ $i }}"> {{ $i }} </option>
                             @endfor
                         </select>

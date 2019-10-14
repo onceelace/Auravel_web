@@ -6,7 +6,7 @@
 <section class="welcome-area">
     <div class="welcome-slides owl-carousel">
         <!-- Single Welcome Slide -->
-        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(img/bg-img/16.jpg);" data-img-url="img/bg-img/16.jpg">
+        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(images/covers/lobby.jpg);" data-img-url="images/covers/lobby.jpg">
             <!-- Welcome Content -->
             <div class="welcome-content h-100">
                 <div class="container h-100">
@@ -119,7 +119,7 @@
                 <!-- Section Heading -->
                 <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
                     <h6>About Us</h6>
-                    <h2>Welcome to <br>Roberto Hotel Luxury</h2>
+                    <h2>Welcome to <br>Auravel Grande Hotel and Resort</h2>
                 </div>
                 <div class="about-us-content mb-100">
                     <h5 class="wow fadeInUp" data-wow-delay="300ms">With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering for a perfect stay no matter where your destination.</h5>

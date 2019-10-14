@@ -17,8 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('admin/roomtype/alltypes', 'Admin\API\RoomController@alltypes');
 Route::apiResources([
     'admin/roomtype' => 'Admin\API\RoomTypeController',
+    'admin/room' => 'Admin\API\RoomController',
     'admin/customer' => 'Admin\API\CustomerController',
     'admin/content/image' => 'Admin\API\ContentImageController'
 ]);
+

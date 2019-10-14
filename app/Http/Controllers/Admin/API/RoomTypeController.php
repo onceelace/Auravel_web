@@ -61,17 +61,22 @@ class RoomTypeController extends Controller
             'rate' => 'required',
         ]);
 
-        $imageName = time().'.'.$request->room_image->getClientOriginalExtension();
-        $request->room_image->move(public_path('images/roomtype'), $imageName);
+        if ($request->hasFile('room_image')) {
+            $imageName = time().'.'.$request->room_image->getClientOriginalExtension();
+            $request->room_image->move(public_path('images/roomtype'), $imageName);
+        }else{
+            $imageName = 'no_image.jpg';
+        }
 
+        
+        //return $request;
     	//return response()->json(['success'=>'You have successfully upload image.'.$request->name]);
 
         return RoomType::create([
             'name' => $request['name'],
             'roomsize' => $request['roomsize'],
             'description' => $request['description'],
-            'highlights' => $request['highlights'],
-            'services' => $request['services'],
+            'amenities' => $request['amenities'],
             'min_occupant' => $request['min_occupant'],
             'max_occupant' => $request['max_occupant'],
             'rate' => $request['rate'],
@@ -143,8 +148,7 @@ class RoomTypeController extends Controller
             'name' => $request->name,
             'roomsize' => $request->roomsize,
             'description' => $request->description,
-            'highlights' => $request->highlights,
-            'services' => $request->services,
+            'amenities' => $request->amenities,
             'min_occupant' => $request->min_occupant,
             'max_occupant' => $request->max_occupant,
             'rate' => $request->rate,
@@ -165,5 +169,9 @@ class RoomTypeController extends Controller
     public function destroy($id)
     {
         //
+        $roomType = RoomType::find($id);
+        $roomType->delete();
+
+        return ['message' => 'Room Type Deleted'];
     }
 }

@@ -2,7 +2,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create Room Type</div>
+                <div class="card-header">Edit Room Type</div>
 
                 <div class="card-body">
                     <form @submit.prevent="updateRoomType" @keydown="form.onKeydown($event)" enctype="multipart/form-data">
@@ -26,18 +26,10 @@
                             <has-error :form="form" field="description"></has-error>
                         </div>
                         <div class="form-group">
-                            <label>Highlights</label>
+                            <label>Amenities</label>
 
-                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.highlights"></vue-editor>
-                            <!-- <textarea v-model="form.highlights" name="highlights"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('highlights') }"></textarea> -->
-                            <has-error :form="form" field="highlights"></has-error>
-                        </div>
-                        <div class="form-group">
-                            <label>Services</label>
-                            <input v-model="form.services" type="text" name="services"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('services') }">
-                            <has-error :form="form" field="services"></has-error>
+                            <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="form.amenities"></vue-editor>
+                            <has-error :form="form" field="amenities"></has-error>
                         </div>
                         <div class="form-group">
                             <label>Minimum Occupant</label>
@@ -85,7 +77,7 @@
                     name: '',
                     roomsize: '',
                     description: '',
-                    highlights: '',
+                    amenities: '',
                     min_occupant: '',
                     max_occupant: '',
                     room_image: null,
@@ -107,8 +99,6 @@
 
             },
             updateRoomType(e){
-                //e.preventDefault();
-                // this.$Progress.start();
 
                 let formData = new FormData();
                 formData.append('id', this.form.id);
@@ -116,12 +106,11 @@
                 formData.append('min_occupant', this.form.min_occupant);
                 formData.append('name', this.form.name);
                 formData.append('description', this.form.description);
-                formData.append('highlights', this.form.highlights);
+                formData.append('amenities', this.form.amenities);
                 formData.append('old_image', this.form.old_image);
                 formData.append('rate', this.form.rate);
                 formData.append('room_image', this.imageFile);
                 formData.append('roomsize', this.form.roomsize);
-                formData.append('services', this.form.services);
                 formData.append('room_image', this.imageFile);
                 formData.append('isChangedImage', this.form.isChangedImage);
                 formData.append('_method', 'PUT')
@@ -131,34 +120,42 @@
                 }
                 this.form.room_image = this.imageFile;
 
-                console.log(formData);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                    })
+                    .then((result) => {
+                        if(result.value)
+                        {
 
-                axios.post('/api/admin/roomtype/' + this.form.id, formData, { headers: {
-                        'content-type': 'multipart/form-data',
-                    }
+                            axios.post('/api/admin/roomtype/' + this.form.id, formData, { headers: {
+                                 'content-type': 'multipart/form-data',
+                                }
+                            })
+                            .then(({ data }) => {
+                                this.$Progress.finish();
+                                Toast.fire({
+                                    type: 'success',
+                                    title: 'Room Type has been updated'
+                                })
+                                this.$router.push('/admin/roomtypes');
+                            })
+                            .catch(function (error) {
+                                Swal.fire(
+                                        'Failed!',
+                                        'Failed to update the room.',
+                                        'success'
+                                    )
+                            });
+                        }
+
+
                 })
-                .then(({ data }) => {
-                    this.$router.push('/admin/roomtypes');
-                })
-                .catch(function (error) {
-                    console.log(error.response);
-                });
-
-                // this.form.submit('put', '/api/admin/roomtype/' + this.form.id, {
-                //     // Transform form data to FormData
-                //     transformRequest: [function (data, headers) {
-                //         return objectToFormData(data)
-                //     }],
-                //     onUploadProgress: e => {
-                //         // Do whatever you want with the progress event
-                //         // console.log(e)
-                //     }
-                // })
-                // .then(({ data }) => {
-                //     //this.$router.push('/admin/roomtypes');
-                // })
-
-                //console.log(this.form);
             },
             handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
                 // An example of using FormData
