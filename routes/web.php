@@ -23,6 +23,11 @@ Route::get('/room/get', 'HomeController@getRooms');
 Route::get('/room/{id}', 'HomeController@roomdetail')->name('home.rooms.details');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
+//Booking
+Route::post('/booking', 'Customer\BookingController@index')->name('booking');
+Route::get('/booking', 'Customer\BookingController@index')->name('booking');
+Route::post('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
+Route::get('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 
 //CHECK IN
 // Route::get('/find/room', 'HomeController@checkroom')->name('room.check');

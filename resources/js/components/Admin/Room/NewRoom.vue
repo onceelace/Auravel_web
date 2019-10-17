@@ -20,14 +20,6 @@
                             </select>
                             <has-error :form="form" field="room_type_id"></has-error>
                         </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select v-model="form.status" name="status"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('status') }">
-                                <option value="Available">Available</option>
-                            </select>
-                            <has-error :form="form" field="is_occupied"></has-error>
-                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

@@ -59,15 +59,92 @@ class HomeController extends Controller
         //        });
         //    })->get();
 
-        $availableRoomType = DB::table('room_types')
-                ->join('rooms','rooms.room_type_id','=','room_types.id')
-                ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-                ->select('room_types.*')
-                ->whereNotBetween('bookings.check_in', $datefilters )
-                ->whereNotBetween('bookings.check_out', $datefilters )
-                ->get();
+        // $availableRoomType = DB::table('room_types')
+        //         ->join('rooms','rooms.room_type_id','=','room_types.id')
+        //         ->leftJoin('bookings','rooms.id','=','bookings.room_id')
+        //         ->select('room_types.*')
+        //         ->whereNotBetween('bookings.check_in', $datefilters )
+        //         ->whereNotBetween('bookings.check_out', $datefilters )
+        //         ->get();
+        $start = $checkInDate;
+        $end = $checkOutDate;
 
-        return $availableRoomType;
+        // $a = DB::table('room_types')->join('rooms', function($join){
+        //     $join->on('room_types.id','=','rooms.room_type_id');
+
+        // })->get();
+        
+        
+
+        // $availableRoomType = DB::table('room_types')->where(function ($query) use ($start, $end) {
+
+        //     $query->join('rooms','rooms.room_type_id','=','room_types.id')
+        //     ->leftJoin('bookings','rooms.id','=','bookings.room_id')
+        //     ->select('room_types.*');
+
+        //     $query->where(function ($q) use ($start, $end) {
+        //         $q->where('bookings.check_in', '>=', $start)
+        //            ->where('bookings.check_in', '<', $end);
+        
+        //     })->orWhere(function ($q) use ($start, $end) {
+        //         $q->where('bookings.check_in', '<=', $start)
+        //            ->where('bookings.check_out', '>', $end);
+        
+        //     })->orWhere(function ($q) use ($start, $end) {
+        //         $q->where('bookings.check_out', '>', $start)
+        //            ->where('bookings.check_out', '<=', $end);
+        
+        //     })->orWhere(function ($q) use ($start, $end) {
+        //         $q->where('bookings.check_in', '>=', $start)
+        //            ->where('bookings.check_out', '<=', $end);
+        //     });
+        
+        // })->get();
+                
+        $returnRoomTypes = $this->filterRoomType(0,$datefilters);
+        return $returnRoomTypes;
+    }
+
+
+    public function filterRoomType($totalCount, $datefilters)
+    {
+        $returnRoomTypes = collect();
+        $roomtypes = DB::table('room_types')
+        ->where('max_occupant','>=', $totalCount )
+        ->get();
+        if($roomtypes)
+        {
+            
+            foreach($roomtypes as $rt)
+            {
+                $rooms = DB::table('rooms')
+                    ->where('room_type_id','=',$rt->id)
+                    ->get();
+
+                if($rooms)
+                {
+                    
+                    foreach($rooms as $room)
+                    {
+                        $bs = DB::table('bookings')
+                            ->where('room_id','=',$room->id)
+                            ->whereBetween('check_in', $datefilters )
+                            ->whereBetween('check_out', $datefilters )->first();
+
+                        if(!$bs)
+                        {
+                            //$returnRoomTypes = array_add($rt);
+                            if(!$returnRoomTypes->contains('id',$rt->id))
+                            {
+                                $returnRoomTypes->push($rt);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $returnRoomTypes;
     }
 
     public function room(Request $request)
@@ -89,6 +166,11 @@ class HomeController extends Controller
                 $totalCount += $request->adults;
             }
 
+            if($request->children == null)
+            {
+                $request->children = 0;
+            }
+
             if($request->children >0)
             {
                 $totalCount += $request->children;
@@ -103,14 +185,8 @@ class HomeController extends Controller
             // ->paginate(15);
             $datefilters=[$request->checkIn,$request->checkOut];
 
-            $availableRoomType = DB::table('room_types')
-                ->join('rooms','rooms.room_type_id','=','room_types.id')
-                ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-                ->select('room_types.*')
-                ->where('room_types.max_occupant','>=', $totalCount )
-                ->whereNotBetween('bookings.check_in', $datefilters )
-                ->whereNotBetween('bookings.check_out', $datefilters )
-                ->paginate(15);
+            $availableRoomType = $this->filterRoomType($totalCount,$datefilters);
+
 
             return view('home.room')
                 ->with('finddata', $request)

@@ -44,6 +44,12 @@
                 <p>Rooms</p>
             </router-link>
         </li>
+        <li class="nav-item mb-2">
+            <router-link to="/admin/bookings" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Bookings</p>
+            </router-link>
+        </li>
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>

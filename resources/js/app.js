@@ -62,6 +62,8 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 // Init plugin
 Vue.use(Loading);
 
+
+
 let routes = [
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
@@ -70,6 +72,10 @@ let routes = [
     { path: '/admin/rooms', component: require('./components/Admin/Room/Rooms.vue').default },
     { path: '/admin/room/new', component: require('./components/Admin/Room/NewRoom.vue').default },
     { path: '/admin/room/edit/:id', component: require('./components/Admin/Room/EditRoom.vue').default },
+
+    { path: '/admin/bookings', component: require('./components/Admin/Booking/Bookings.vue').default },
+    { path: '/admin/bookings/Calendar', component: require('./components/Admin/Booking/CalendarView.vue').default },
+    { path: '/admin/bookings/details/:id', component: require('./components/Admin/Booking/BookingDetails.vue').default },
     
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 ]

@@ -18,10 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('admin/roomtype/alltypes', 'Admin\API\RoomController@alltypes');
+Route::get('admin/bookings?status={status}', 'Admin\API\BookingController@index');
+Route::get('admin/bookings/{id}', 'Admin\API\BookingController@bookingDetails');
+Route::put('admin/bookings/checkin/{id}', 'Admin\API\BookingController@checkIn');
+Route::put('admin/bookings/checkout/{id}', 'Admin\API\BookingController@checkOut');
 Route::apiResources([
     'admin/roomtype' => 'Admin\API\RoomTypeController',
     'admin/room' => 'Admin\API\RoomController',
     'admin/customer' => 'Admin\API\CustomerController',
-    'admin/content/image' => 'Admin\API\ContentImageController'
+    'admin/content/image' => 'Admin\API\ContentImageController',
+    'admin/booking' => 'Admin\API\BookingController'
 ]);
 

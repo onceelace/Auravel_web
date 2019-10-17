@@ -43,8 +43,13 @@
                                 <h6>Capacity: <span>Max persion {{$roomtype->max_occupant}}</span></h6>
                             </div>
                             @if($isFiltered == true)
-                            <form method="GET" action="{{ route('home.rooms.details',['id' => $roomtype->id]) }}">
+                            <form method="POST" action="{{ route('booking') }}">
+                            @csrf
                             <input type="hidden" name="roomTypeId" id="roomTypeId" value="{{$roomtype->id}}">
+                            <input type="hidden" name="checkIn" id="checkIn" value="{{ $finddata->checkIn }}">
+                            <input type="hidden" name="checkOut" id="checkOut" value="{{ $finddata->checkOut }}">
+                            <input type="hidden" name="adults" id="adults" value="{{ $finddata->adults }}">
+                            <input type="hidden" name="children" id="children" value="{{ $finddata->children }}">
                             <button class="btn btn-success">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                             </form>
                             
@@ -54,16 +59,8 @@
 
                 @endforeach
 
-                {{ $roomtypes->links() }}
+                <!-- $roomtypes->links() -->
                 <!-- Pagination -->
-                {{-- <nav class="roberto-pagination wow fadeInUp mb-100" data-wow-delay="1000ms">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next <i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </nav> --}}
             @else
                 <h4>No available room</h4>
                 <p>Try to change the Check-in and Check-out date.</p>
@@ -91,8 +88,8 @@
                             <label for="guests">Guests</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <select name="adults" id="adults" class="form-control">
-                                        <option value="adults">Adults</option>
+                                    <select name="adults" id="adults" class="form-control" required>
+                                        <option value="" selected>Adults</option>
                                         @for ($i = 1; $i <= 10; $i++)
                                             <option value="{{ $i }}" {{ ( $i == $finddata->adults) ? 'selected' : '' }}> {{ $i }} </option>
                                         @endfor
@@ -100,7 +97,7 @@
                                 </div>
                                 <div class="col-6">
                                     <select name="children" id="children" class="form-control">
-                                        <option value="children">Children</option>
+                                        <option value="" selected>Children</option>
                                         @for ($i = 1; $i <= 10; $i++)
                                             <option value="{{ $i }}" {{ ( $i == $finddata->children) ? 'selected' : '' }}> {{ $i }} </option>
                                         @endfor

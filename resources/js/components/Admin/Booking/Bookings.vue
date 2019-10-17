@@ -3,7 +3,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Room Types</h3>
+                <h3 class="card-title">Bookings - Table View</h3>
 
                 <div class="card-tools">
                     <div class="card-tools">
@@ -18,12 +18,13 @@
 
                 <div class="row mb-2">
                     <div class="col-md-6 col-xs-12">
-                        <a class="btn btn-light" style="border-radius: 0;" href="/admin/roomtypes/new">
-                            Add New <i class="fas fa-user-plus fa-w"></i>
+                        <a class="btn btn-light" style="border-radius: 0;" href="/admin/bookings/Calendar">
+                            Calendar View <i class="fas fa-calendar fa-w"></i>
                         </a>
-                        <a class="btn btn-light" style="border-radius: 0;" @click="loadRoomTypes()">
+                        <a class="btn btn-light" style="border-radius: 0;" @click="loadItems(selected)">
                             <i class="fas fa-sync-alt"></i>
                         </a>
+                        <b-form-select v-model="selected" :options="options" style="display: inline-block; width: 50%;" @change="loadItems(selected)"></b-form-select>
                     </div>
                     <div class="col-md-6 col-xs-12">
                         <b-form-group
@@ -34,6 +35,7 @@
                             label-for="filterInput"
                             class="mb-0"
                             >
+                            
                             <b-input-group size="sm">
                                 <b-form-input
                                 v-model="filter"
@@ -49,7 +51,7 @@
                     </div>
                 </div>
                 <b-table sticky-header striped hover show-empty
-                    :items="roomtypes"
+                    :items="items"
                     :fields="fields"
                     :current-page="currentPage"
                     :per-page="perPage"filterInput
@@ -62,9 +64,6 @@
                     <template v-slot:cell(actions)="row">
                         <b-button size="sm" @click="editRoomType(row.item)" class="mr-2" variant="link">
                             <i class="fa fa-edit text-blue"></i>
-                        </b-button>
-                        <b-button size="sm" @click="deleteItem(row.item.id)" class="mr-2" variant="link">
-                            <i class="fa fa-trash text-red"></i>
                         </b-button>
                     </template>
                 </b-table>
@@ -79,30 +78,6 @@
                         </b-pagination>
                     </b-col>
                 </b-row>
-                <!-- <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Min Occupant</th>
-                      <th>Max Occupant</th>
-                      <th>Rate</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="roomtype in roomtypes" :key="'roomtype'+roomtype.id">
-                        <td>{{roomtype.name}}</td>
-                        <td>{{roomtype.min_occupant}}</td>
-                        <td>{{roomtype.max_occupant}}</td>
-                        <td >{{roomtype.rate}}</td>
-                        <td>
-                            <button type="button" class="btn btn-link" v-on:click="editUser(roomtype)"><i class="fa fa-edit text-blue"></i></button>
-                            /
-                            <a href="#" @click="deleteUser(roomtype.id)"><i class="fa fa-trash text-red"></i></a>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table> -->
               </div>
               <!-- /.card-body -->
             </div>
@@ -115,7 +90,15 @@
     export default {
         data(){
             return {
-                roomtypes : [],
+                selected: 'Booked',
+                options: [
+                    { value: 'All', text: 'All' },
+                    { value: 'Booked', text: 'Booked' },
+                    { value: 'Checked-In', text: 'Checked-In' },
+                    { value: 'Checked-Out', text: 'Checked-Out' },
+                    { value: 'Cancelled', text: 'Cancelled' }
+                ],
+                items : [],
                 fullPage: false,
                 perPage: 10,
                 currentPage: 1,
@@ -123,23 +106,34 @@
                 filterOn: [],
                 fields: [
                     {
-                        key: 'name',
+                        key: 'roomName',
                         sortable: true
                     },
                     {
-                        key: 'min_occupant',
+                        key: 'firstname',
                         sortable: true
                     },
                     {
-                        key: 'max_occupant',
+                        key: 'lastname',
+                        sortable: true
+                    },{
+                        key: 'email',
                         sortable: true
                     },
                     {
-                        key: 'roomsize',
+                        key: 'status',
                         sortable: true
                     },
                     {
-                        key: 'rate',
+                        key: 'payment_status',
+                        sortable: true
+                    },
+                    {
+                        key: 'check_in',
+                        sortable: true
+                    },
+                    {
+                        key: 'check_out',
                         sortable: true
                     },
                     {
@@ -149,17 +143,17 @@
             }
         },
         methods: {
-            loadRoomTypes() {
+            loadItems(statusType) {
                 this.filter = null;
-                axios.get("/api/admin/roomtype").then(({ data }) => (this.roomtypes = data.data));
+                axios.get("/api/admin/booking?status=" + statusType).then(({ data }) => (this.items = data));
             },
             createUser(){
 
             },
             editRoomType(info) {
-                this.$router.push({ path : '/admin/roomtypes/edit/' + info.id });
+                this.$router.push({ path : '/admin/bookings/details/'+ info.id });
             },
-            deleteItem(id) {
+            deleteRecord(id) {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -173,23 +167,22 @@
                         if(result.value)
                         {
                             //Send request to the server
-                            axios.delete("/api/admin/roomtype/" + id)
+                            axios.delete("/api/admin/room/" + id)
                             .then((result) => {
                                 console.log(result);
                                 if (result.data.message === 'Deleted') {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Room Type has been deleted.',
-                                        'success'
-                                    );
-                                    this.loadRoomTypes();
+                                     Toast.fire({
+                                        type: 'success',
+                                        title: 'Room has been deleted'
+                                    })
+                                    this.loadRooms();
                                 }
                             })
                             .catch(() => {
                                 if (result.value) {
                                     Swal.fire(
                                     'Failed!',
-                                    'Failed to delete the Room Type.',
+                                    'Failed to delete the room.',
                                     'success'
                                     )
                                 }
@@ -206,11 +199,11 @@
             }
         },
         created() {
-            this.loadRoomTypes();
+            this.loadItems('Booked');
         },
         computed: {
             rows() {
-                return this.roomtypes.length
+                return this.items.length
             }
         }
     }

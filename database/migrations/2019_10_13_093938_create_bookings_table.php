@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration
             $table->integer('room_id')->nullable()->unsigned();
             $table->date('check_in');
             $table->date('check_out');
+            $table->string('payment_status');
             $table->string('status');
             $table->timestamps();
         });

@@ -65,13 +65,11 @@ class RoomController extends Controller
         $this->validate($request,[
             'name' => 'required|string|max:191|unique:rooms',
             'room_type_id' => 'required|integer',
-            'status' => 'required|string',
         ]);
 
         return Room::create([
             'name' => $request['name'],
-            'room_type_id' => $request['room_type_id'],
-            'status' => $request['status']
+            'room_type_id' => $request['room_type_id']
         ]);
     }
 
@@ -112,13 +110,11 @@ class RoomController extends Controller
         $this->validate($request,[
             'name' => 'required|string|max:191|unique:rooms,name,'.$room->id,
             'room_type_id' => 'required|integer',
-            'status' => 'required|string',
         ]);
 
         $room->update([
             'name' => $request->name,
-            'room_type_id' => $request->room_type_id,
-            'status' => $request->status,
+            'room_type_id' => $request->room_type_id
         ]);
 
         return ['message' => 'Room has been Updated'];

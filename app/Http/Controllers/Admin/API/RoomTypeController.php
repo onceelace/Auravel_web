@@ -172,6 +172,6 @@ class RoomTypeController extends Controller
         $roomType = RoomType::find($id);
         $roomType->delete();
 
-        return ['message' => 'Room Type Deleted'];
+        return ['message' => 'Deleted'];
     }
 }

@@ -18,9 +18,6 @@
 
                 <div class="row mb-2">
                     <div class="col-md-6 col-xs-12">
-                        <a class="btn btn-light" style="border-radius: 0;" href="/admin/customer/new">
-                            Add New <i class="fas fa-user-plus fa-w"></i>
-                        </a>
                         <a class="btn btn-light" style="border-radius: 0;" @click="loadData()">
                             <i class="fas fa-sync-alt"></i>
                         </a>
@@ -59,14 +56,7 @@
                     <!-- <template v-slot:cell(room_image)="row">
                         <b-img thumbnail rounded fluid :src="`${row.item.room_image}`" alt="Image 1" style="height: 50%;"></b-img>
                     </template> -->
-                    <template v-slot:cell(actions)="row">
-                        <b-button size="sm" @click="editRoomType(row.item)" class="mr-2" variant="link">
-                            <i class="fa fa-edit text-blue"></i>
-                        </b-button>
-                        <b-button size="sm" class="mr-2" variant="link">
-                            <i class="fa fa-trash text-red"></i>
-                        </b-button>
-                    </template>
+                    
                 </b-table>
                 <b-row align-h="end">
                     <b-col cols="4">
@@ -144,9 +134,6 @@
                         key: 'created_at',
                         label: 'Date Registered',
                         sortable: true
-                    },
-                    {
-                        key: 'actions'
                     }
                 ]
             }

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class Payment extends Model
 {
     protected $fillable = [
-        'user_id','room_id','status','check_in','check_out','payment_status',
+        'booking_id','amount',
     ];
 }
