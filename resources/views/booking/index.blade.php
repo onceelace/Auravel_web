@@ -34,7 +34,7 @@
                     <!-- Room Content -->
                     <div class="room-content">
                         <a href="{{ route('home.rooms.details',['id' => $booking['availableRoomType']->id]) }}"><h2>{{$booking['availableRoomType']->name}}</h2></a>
-                        <h4>PHP {{$booking['availableRoomType']->rate}} <span>/ Day</span></h4>
+                        <h4>PHP {{number_format($booking['availableRoomType']->rate,2)}}<span>/ Day</span></h4>
                         <div class="room-feature">
                             <h6>Size: <span>{{$booking['availableRoomType']->roomsize}}</span></h6>
                             <h6>Capacity: <span>Max persion {{$booking['availableRoomType']->max_occupant}}</span></h6>
@@ -84,16 +84,16 @@
                             <dd class="col-md-5 col-sm-12"><strong>{{$booking['availableRoom']->name}}</strong></dd>
 
                             <dt class="col-md-7 col-sm-12">Rate</dt>
-                            <dd class="col-md-5 col-sm-12"><strong>PHP {{$booking['availableRoomType']->rate}}</strong></dd>
+                            <dd class="col-md-5 col-sm-12"><strong>PHP {{number_format($booking['availableRoomType']->rate,2)}}</strong></dd>
                         </dl>
                         <dl class="row">
                             <dt class="col-md-7 col-sm-12">Reservation</dt>
-                            <dd class="col-md-5  col-sm-12"><strong><h5>PHP 1000</h5></strong></dd>
+                            <dd class="col-md-5  col-sm-12"><strong><h5>PHP 1,000.00</h5></strong></dd>
                             
                         </dl>
                         <dl class="row">
                             <dt class="col-md-7 col-sm-12">TOTAL</dt>
-                            <dd class="col-md-5  col-sm-12"><strong><h5>PHP {{$booking['total']}}</h5></strong></dd>
+                            <dd class="col-md-5  col-sm-12"><strong><h5>PHP {{number_format($booking['total'],2)}}</h5></strong></dd>
                         </dl>
                         <div class="row" style=" margin-bottom: 20px;">
                             <form method="POST" action="{{ route('booking.payment') }}" style="width: 100%;">

@@ -34,21 +34,49 @@ class BookingController extends Controller
 
         if($rooms)
         {
-            
             foreach($rooms as $room)
             {
-                $bs = DB::table('bookings')
-                    ->where('room_id','=',$room->id)
-                    ->whereNotBetween('check_in', $datefilters )
-                    ->whereNotBetween('check_out', $datefilters )->first();
+                $bs2 = DB::table('bookings')
+                ->where('room_id','=',$room->id)
+                ->where('status','!=','Checked-Out')
+                ->get();
 
-                if(!$bs)
+                if(!is_null($bs2))
                 {
-                    //$returnRoomTypes = array_add($rt);
-                    if(!$returnRooms->contains('id',$room->id))
+                    if($bs2->count() >= 1)
                     {
+                        foreach($bs2 as $tmpRoom)
+                        {
+    
+                            //return json_encode($tmpRoom->check_out);
+                            $check_in = Carbon::parse($datefilters[0])->format('Y-m-d');
+                            $check_out = Carbon::parse($datefilters[1])->format('Y-m-d');
+    
+                            //After
+                            if($check_out > $tmpRoom->check_out)
+                            {
+                                if($check_in > $tmpRoom->check_out)
+                                {
+                                    return $room;
+                                }
+                            }
+    
+                            //Before
+                            if($check_out < $tmpRoom->check_in)
+                            {
+                                if($check_in < $tmpRoom->check_in)
+                                {
+                                    return $room;
+                                }
+                            }
+    
+                        }
+                    }
+                    else{
                         return $room;
                     }
+                }else{
+                    return $room;
                 }
             }
         }
@@ -75,7 +103,9 @@ class BookingController extends Controller
             // ->whereNotBetween('bookings.check_out', $datefilters )
             // ->first();
             $getFirstRoom = $this->filterRoom((int)$request->roomTypeId,$datefilters);
+
             //return $getFirstRoom;
+
             $user = Auth::user();
 
             //Save cookie
@@ -129,9 +159,9 @@ class BookingController extends Controller
                 }
 
 
-                return view('booking.index')
-                    ->with('booking', $booking);
-                //return $booking;
+                // return view('booking.index')
+                //     ->with('booking', $booking);
+                return $booking;
             }
 
             return redirect()->route('home.rooms');

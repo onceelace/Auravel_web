@@ -36,23 +36,27 @@
                         </div>
                         <!-- Room Content -->
                         <div class="room-content">
-                            <a href="{{ route('home.rooms.details',['id' => $roomtype->id]) }}"><h2>{{$roomtype->name}}</h2></a>
-                            <h4>PHP {{$roomtype->rate}} <span>/ Day</span></h4>
+                            <h2>{{$roomtype->name}}</h2>
+                            <h4>PHP {{number_format($roomtype->rate,2)}} <span>/ Day</span></h4>
                             <div class="room-feature">
                                 <h6>Size: <span>{{$roomtype->roomsize}}</span></h6>
-                                <h6>Capacity: <span>Max persion {{$roomtype->max_occupant}}</span></h6>
+                                <h6>
+                                    Capacity<small>(Person)</small>:
+                                    <span>Min: {{$roomtype->min_occupant}}</span>
+                                    <span>Max: {{$roomtype->max_occupant}}</span>
+                                </h6>
+                                <p>{!!html_entity_decode($roomtype->description)!!}</p>
                             </div>
                             @if($isFiltered == true)
                             <form method="POST" action="{{ route('booking') }}">
-                            @csrf
-                            <input type="hidden" name="roomTypeId" id="roomTypeId" value="{{$roomtype->id}}">
-                            <input type="hidden" name="checkIn" id="checkIn" value="{{ $finddata->checkIn }}">
-                            <input type="hidden" name="checkOut" id="checkOut" value="{{ $finddata->checkOut }}">
-                            <input type="hidden" name="adults" id="adults" value="{{ $finddata->adults }}">
-                            <input type="hidden" name="children" id="children" value="{{ $finddata->children }}">
-                            <button class="btn btn-success">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                                @csrf
+                                <input type="hidden" name="roomTypeId" id="roomTypeId" value="{{$roomtype->id}}">
+                                <input type="hidden" name="checkIn" id="checkIn" value="{{ $finddata->checkIn }}">
+                                <input type="hidden" name="checkOut" id="checkOut" value="{{ $finddata->checkOut }}">
+                                <input type="hidden" name="adults" id="adults" value="{{ $finddata->adults }}">
+                                <input type="hidden" name="children" id="children" value="{{ $finddata->children }}">
+                                <button class="btn btn-success">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                             </form>
-                            
                             @endif
                         </div>
                     </div>

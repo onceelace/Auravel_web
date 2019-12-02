@@ -28,7 +28,10 @@
                             <a class="nav-link" href="#">Facilities</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="#">Galleries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About us</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

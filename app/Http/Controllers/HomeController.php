@@ -114,7 +114,6 @@ class HomeController extends Controller
         ->get();
         if($roomtypes)
         {
-            
             foreach($roomtypes as $rt)
             {
                 $rooms = DB::table('rooms')
@@ -126,14 +125,42 @@ class HomeController extends Controller
                     
                     foreach($rooms as $room)
                     {
-                        $bs = DB::table('bookings')
-                            ->where('room_id','=',$room->id)
-                            ->whereBetween('check_in', $datefilters )
-                            ->whereBetween('check_out', $datefilters )->first();
 
-                        if(!$bs)
+                        // $bs2 = DB::table('bookings')
+                        //     ->where('room_id','=',$room->id)
+                        //     ->where('status','=','Booked')
+                        //     ->orWhere('status','=','Checked-In')
+                        //     ->whereBetween('check_in',array($datefilters[0],$datefilters[1]))
+                        //     ->whereBetween('check_out', array($datefilters[0],$datefilters[1]) )
+                        //     ->count();
+
+                        $bs2 = DB::table('bookings')
+                            ->where('room_id','=',$room->id)
+                            ->whereBetween('check_in',$datefilters)
+                            ->orWhereBetween('check_out',$datefilters)
+                            ->first();
+
+                        if(!is_null($bs2))
                         {
-                            //$returnRoomTypes = array_add($rt);
+                        
+                            if($bs2->room_id == $room->id)
+                            {
+                                if($bs2->status == 'Checked-Out')
+                                {
+                                    //$returnRoomTypes = array_add($rt);
+                                    if(!$returnRoomTypes->contains('id',$rt->id))
+                                    {
+                                        $returnRoomTypes->push($rt);
+                                    }
+                                }
+                            }else{
+                                if(!$returnRoomTypes->contains('id',$rt->id))
+                                {
+                                    $returnRoomTypes->push($rt);
+                                }
+                            }
+                        }
+                        else{
                             if(!$returnRoomTypes->contains('id',$rt->id))
                             {
                                 $returnRoomTypes->push($rt);
@@ -187,12 +214,15 @@ class HomeController extends Controller
 
             $availableRoomType = $this->filterRoomType($totalCount,$datefilters);
 
+            //return $availableRoomType;
 
             return view('home.room')
                 ->with('finddata', $request)
                 ->with('roomtypes',$availableRoomType)
                 ->with('isFiltered',$isFiltered);
-            //return $roomTypes;
+            
+            
+            // return $roomTypes;
 
             //return $availableRoomType;
 

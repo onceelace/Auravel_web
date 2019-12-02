@@ -37,7 +37,7 @@
                     <div class="room-content">
                         <a href="{{ route('home.rooms.details',['id' => $roomtype->id]) }}"><h2>{{$roomtype->name}}</h2></a>
                         
-                        <h4>PHP {{$roomtype->rate}} <span>/ Day</span></h4>
+                        <h4>PHP {{number_format($roomtype->rate,2)}} <span>/ Day</span></h4>
                         <div class="room-feature">
                             <h6>Size: <span>{{$roomtype->roomsize}}</span></h6>
                             <h6>Capacity: <span>Max persion {{$roomtype->max_occupant}}</span></h6>

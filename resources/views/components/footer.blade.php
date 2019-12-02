@@ -13,22 +13,6 @@
                 </div>
             </div>
 
-            <!-- <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget mb-80">
-                    <h5 class="widget-title">Our Blog</h5>
-
-                    <div class="latest-blog-area">
-                        <a href="#" class="post-title">Freelance Design Tricks How</a>
-                        <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
-                    </div>
-
-                    <div class="latest-blog-area">
-                        <a href="#" class="post-title">Free Advertising For Your Online</a>
-                        <span class="post-date"><i class="fa fa-clock-o" aria-hidden="true"></i> Jan 02, 2019</span>
-                    </div>
-                </div>
-            </div> -->
-
             <!-- Single Footer Widget Area -->
             <div class="col-12 col-sm-4 col-lg-2">
                 <div class="single-footer-widget mb-80">

@@ -62,3 +62,29 @@ a.btn.btn-link{
 a.btn.btn-link:hover{
     text-decoration: none;
 }
+a.nav-link {
+    font-size: 14px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=date] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.footer-area{
+    z-index: 1 !important;
+}
+
+img {
+    max-width: 80%;
+}
+
+.single-footer-widget h4 {
+    font-size: 20px;
+}

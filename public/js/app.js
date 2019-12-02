@@ -3024,9 +3024,6 @@ __webpack_require__.r(__webpack_exports__);
         key: 'roomtypename',
         sortable: true
       }, {
-        key: 'status',
-        sortable: true
-      }, {
         key: 'created_at',
         sortable: true
       }, {
