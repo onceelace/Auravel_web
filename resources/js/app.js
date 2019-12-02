@@ -76,6 +76,14 @@ let routes = [
     { path: '/admin/bookings', component: require('./components/Admin/Booking/Bookings.vue').default },
     { path: '/admin/bookings/Calendar', component: require('./components/Admin/Booking/CalendarView.vue').default },
     { path: '/admin/bookings/details/:id', component: require('./components/Admin/Booking/BookingDetails.vue').default },
+
+    //PAGES
+    { path: '/admin/pages/home', component: require('./components/Admin/Pages/Home.vue').default },
+
+
+    { path: '/admin/pages/sliders', component: require('./components/Admin/Pages/Sliders/Sliders.vue').default },
+    { path: '/admin/pages/sliders/new', component: require('./components/Admin/Pages/Sliders/NewSlider.vue').default },
+    { path: '/admin/pages/sliders/edit/:id', component: require('./components/Admin/Pages/Sliders/EditSlider.vue').default },
     
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 ]

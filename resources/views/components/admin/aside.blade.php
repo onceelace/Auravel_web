@@ -54,6 +54,41 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
+                Pages
+                <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item ml-2">
+                    <router-link to="/admin/pages/home" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>Home</p>
+                    </router-link>
+                </li>
+                <li class="nav-item ml-2">
+                    <router-link to="/admin/pages/sliders" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>Home Sliders</p>
+                    </router-link>
+                </li>
+                <li class="nav-item ml-2">
+                    <router-link to="/inventory" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>Galleries</p>
+                    </router-link>
+                </li>
+                <li class="nav-item ml-2">
+                    <router-link to="/inventory" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>About Us</p>
+                    </router-link>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
                 Reports
                 <i class="right fas fa-angle-left"></i>
                 </p>

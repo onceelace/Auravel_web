@@ -9,6 +9,8 @@ use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+use App\Models\Pages\Home;
+
 class HomeController extends Controller
 {
     /**
@@ -28,7 +30,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $home = DB::table('homes')->first();
+        $sliders = DB::table('sliders')
+                    ->where('status','=','Active')
+                    ->orderBy('order', 'asc')
+                    ->get();
+        
+
+        return view('home')
+            ->with('homeDetails', $home)
+            ->with('homeSliders', $sliders);
+        //return view('home');
     }
 
 
