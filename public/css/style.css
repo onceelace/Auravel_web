@@ -1189,3 +1189,7 @@ text-shadow: none;
 		padding-top: 50px;
 		padding-bottom: 0;
 	}
+
+	.my-gallery figcaption{
+		display: none;;
+	}

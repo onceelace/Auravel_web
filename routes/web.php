@@ -29,6 +29,8 @@ Route::get('/booking', 'Customer\BookingController@index')->name('booking');
 Route::post('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 Route::get('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 
+Route::get('/gallery', 'HomeController@gallery')->name('home.gallery');
+
 //CHECK IN
 // Route::get('/find/room', 'HomeController@checkroom')->name('room.check');
 // Route::post('/find/room', 'HomeController@checkroom')->name('room.check');

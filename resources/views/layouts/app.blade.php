@@ -13,6 +13,10 @@
     <!-- Title -->
     <title>{{ config('app.name', 'Auravel') }}</title>
 
+    <!-- Core CSS file -->
+    <link rel="stylesheet" href="{{ asset('photoswipe/photoswipe.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('photoswipe/default-skin/default-skin.css') }}"> 
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('img/core-img/A.jpg') }}">
 
@@ -63,6 +67,13 @@
     <script src="{{ asset('js/roberto.bundle.js') }}"></script>
     <!-- Active -->
     <script src="{{ asset('js/default-assets/active.js') }}"></script>
+
+    <!-- Core JS file -->
+    <script src="{{ asset('photoswipe/photoswipe.min.js') }}"></script> 
+
+    <!-- UI JS file -->
+    <script src="{{ asset('photoswipe/photoswipe-ui-default.min.js') }}"></script>
+    <script src="{{ asset('photoswipe/photoswipeinit.js') }}"></script> 
 
 </body>
 

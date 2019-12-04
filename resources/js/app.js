@@ -84,8 +84,15 @@ let routes = [
     { path: '/admin/pages/sliders', component: require('./components/Admin/Pages/Sliders/Sliders.vue').default },
     { path: '/admin/pages/sliders/new', component: require('./components/Admin/Pages/Sliders/NewSlider.vue').default },
     { path: '/admin/pages/sliders/edit/:id', component: require('./components/Admin/Pages/Sliders/EditSlider.vue').default },
+
+    { path: '/admin/gallery', component: require('./components/Admin/Gallery/Galleries.vue').default },
+    { path: '/admin/gallery/new', component: require('./components/Admin/Gallery/NewGallery.vue').default },
+    { path: '/admin/gallery/edit/:id', component: require('./components/Admin/Gallery/EditGallery.vue').default },
     
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
+
+    { path: '/admin/users', component: require('./components/Admin/Users/Users.vue').default },
+    { path: '/admin/users/new', component: require('./components/Admin/Users/NewUser.vue').default },
 ]
 
 const router = new VueRouter({

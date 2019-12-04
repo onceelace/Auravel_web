@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Models\Room;
-use App\Models\RoomType;
+use Illuminate\Support\Facades\Input;
+use App\Admin;
 
-class RoomController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,22 +17,22 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = DB::table('rooms')
-            ->join('room_types', 'rooms.room_type_id', '=', 'room_types.id')
-            ->select('rooms.*', 'room_types.id as roomtypeid', 'room_types.name as roomtypename')
+        $id = Input::get('status');
+        if($id == 'All')
+        {
+            $customers = DB::table('admins')
+            ->select('*')
+            ->orderBy('lastname','asc')
             ->get();
-        return $rooms;
-    }
-
-    public function alltypes()
-    {
-        //
-        $roomTypes = DB::table('room_types')
-        ->select('*')
-        ->orderBy('min_occupant','asc')
-        ->get();
-
-        return $roomTypes;
+            return $customers;
+        }else{
+            $customers = DB::table('admins')
+            ->select('*')
+            ->where('status','=',$id)
+            ->orderBy('lastname','asc')
+            ->get();
+            return $customers;
+        }
     }
 
     /**
@@ -43,7 +43,6 @@ class RoomController extends Controller
     public function create()
     {
         //
-        
     }
 
     /**
@@ -54,15 +53,28 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
         $this->validate($request,[
-            'name' => 'required|string|max:191|unique:rooms',
-            'room_type_id' => 'required|integer',
+            'firstname' => 'required|string|max:191',
+            'lastname' => 'required|string|max:191',
+            'contactnumber' => 'required|string|max:191',
+            'address' => 'required|string|min:10',
+            'email' => 'required|string|max:191|unique:admins',
+            'username' => 'required|string|max:191|unique:admins',
+            'accounttype' => 'required|string|max:191',
+            'password' => 'required|string|max:191|confirmed',
         ]);
-
-        return Room::create([
-            'name' => $request['name'],
-            'room_type_id' => $request['room_type_id']
+        
+        return Admin::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'contactnumber' => $request->contactnumber,
+            'address' => $request->address,
+            'email' => $request->email,
+            'username' => $request->username,
+            'accounttype' => $request->accounttype,
+            'status' => 'Active',
+            'password' => bcrypt($request->password)
         ]);
     }
 
@@ -75,7 +87,6 @@ class RoomController extends Controller
     public function show($id)
     {
         //
-        return Room::find($id);
     }
 
     /**
@@ -99,18 +110,6 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $room = Room::find($id);
-        $this->validate($request,[
-            'name' => 'required|string|max:191|unique:rooms,name,'.$room->id,
-            'room_type_id' => 'required|integer',
-        ]);
-
-        $room->update([
-            'name' => $request->name,
-            'room_type_id' => $request->room_type_id
-        ]);
-
-        return ['message' => 'Room has been Updated'];
     }
 
     /**
@@ -122,9 +121,5 @@ class RoomController extends Controller
     public function destroy($id)
     {
         //
-        $room = Room::find($id);
-        $room->delete();
-
-        return ['message' => 'Deleted'];
     }
 }

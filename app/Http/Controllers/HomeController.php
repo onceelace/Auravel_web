@@ -44,6 +44,15 @@ class HomeController extends Controller
         //return view('home');
     }
 
+    public function gallery()
+    {
+        $galleries = DB::table('galleries')
+            ->get();
+            
+        return view('home.gallery')
+            ->with('galleries',$galleries);
+    }
+
 
     public function getRooms()
     {

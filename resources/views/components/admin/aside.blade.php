@@ -44,12 +44,8 @@
                 <p>Rooms</p>
             </router-link>
         </li>
-        <li class="nav-item mb-2">
-            <router-link to="/admin/bookings" class="nav-link">
-                <i class="nav-icon fas fa-warehouse"></i>
-                <p>Bookings</p>
-            </router-link>
-        </li>
+
+        <li class="nav-header">Content Management</li>
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -74,16 +70,41 @@
                 <li class="nav-item ml-2">
                     <router-link to="/inventory" class="nav-link">
                     <i class="nav-icon fas fa-chart-line"></i>
-                    <p>Galleries</p>
-                    </router-link>
-                </li>
-                <li class="nav-item ml-2">
-                    <router-link to="/inventory" class="nav-link">
-                    <i class="nav-icon fas fa-chart-line"></i>
                     <p>About Us</p>
                     </router-link>
                 </li>
             </ul>
+        </li>
+        <li class="nav-item mb-2">
+            <router-link to="/admin/gallery" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Galleries</p>
+            </router-link>
+        </li>
+
+        <li class="nav-header">Customer Management</li>
+        <li class="nav-item">
+            <router-link to="/admin/customers" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                Customers
+                </p>
+            </router-link>
+        </li>
+        <li class="nav-item mb-2">
+            <router-link to="/admin/bookings" class="nav-link">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p>Bookings</p>
+            </router-link>
+        </li>
+        <li class="nav-header">Settings</li>
+        <li class="nav-item">
+            <router-link to="/admin/users" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                User Management
+                </p>
+            </router-link>
         </li>
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -101,14 +122,6 @@
                     </router-link>
                 </li>
             </ul>
-        </li>
-        <li class="nav-item">
-            <router-link to="/admin/customers" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                Customers
-                </p>
-            </router-link>
         </li>
         <li class="nav-item">
             <router-link to="/profile" class="nav-link">

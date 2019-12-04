@@ -28,7 +28,7 @@
                             <a class="nav-link" href="#">Facilities</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Galleries</a>
+                            <a class="nav-link" href="{{route('home.gallery')}}">Galleries</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About us</a>

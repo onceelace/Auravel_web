@@ -38,6 +38,8 @@ Route::apiResources([
     'admin/room' => 'Admin\API\RoomController',
     'admin/customer' => 'Admin\API\CustomerController',
     'admin/content/image' => 'Admin\API\ContentImageController',
-    'admin/booking' => 'Admin\API\BookingController'
+    'admin/booking' => 'Admin\API\BookingController',
+    'admin/gallery' => 'Admin\API\GalleryController',
+    'admin/user' => 'Admin\API\UserController'
 ]);
 

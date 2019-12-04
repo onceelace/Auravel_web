@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@auravel.com',
             'username' => 'admin',
             'accounttype' => 'Super Admin',
+            'status' => 'Active',
             'password' => bcrypt('administrator'),
             'created_at' => $date,
             'updated_at' => $date,
