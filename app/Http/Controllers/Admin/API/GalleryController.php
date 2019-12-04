@@ -17,6 +17,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = DB::table('galleries')
+            ->where('status','=','visible')
             ->get();
             
         return $galleries;
