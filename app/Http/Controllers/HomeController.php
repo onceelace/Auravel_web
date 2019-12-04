@@ -47,6 +47,7 @@ class HomeController extends Controller
     public function gallery()
     {
         $galleries = DB::table('galleries')
+            ->where('status','=','Visible')
             ->get();
             
         return view('home.gallery')
