@@ -25,13 +25,13 @@
                             <a class="nav-link" href="/tour/" target="_blank">3D Virtual Tour</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Facilities</a>
+                            <a class="nav-link" href="{{route('home.facilities')}}">Facilities</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('home.gallery')}}">Galleries</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About us</a>
+                            <a class="nav-link" href="{{route('home.abouts')}}">About us</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

@@ -82,6 +82,7 @@ let routes = [
 
     //PAGES
     { path: '/admin/pages/home', component: require('./components/Admin/Pages/Home.vue').default },
+    { path: '/admin/pages/abouts', component: require('./components/Admin/Pages/AboutUs.vue').default },
 
 
     { path: '/admin/pages/sliders', component: require('./components/Admin/Pages/Sliders/Sliders.vue').default },
@@ -91,6 +92,8 @@ let routes = [
     { path: '/admin/gallery', component: require('./components/Admin/Gallery/Galleries.vue').default },
     { path: '/admin/gallery/new', component: require('./components/Admin/Gallery/NewGallery.vue').default },
     { path: '/admin/gallery/edit/:id', component: require('./components/Admin/Gallery/EditGallery.vue').default },
+
+    { path: '/admin/pages/facilities', component: require('./components/Admin/Facilities/Facilities.vue').default },
     
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 

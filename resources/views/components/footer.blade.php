@@ -21,10 +21,11 @@
 
                     <!-- Footer Nav -->
                     <ul class="footer-nav">
-                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a></li>
-                        <li><a href="{{route('homepage')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> Our Room</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Career</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQs</a></li>
+                        <li><a href="{{route('home.rooms')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> Room</a></li>
+                        <li><a href="/tour/" target="_blank"><i class="fa fa-caret-right" aria-hidden="true"></i> Virtual Tour</a></li>
+                        <li><a href="{{route('home.facilities')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> Facilities</a></li>
+                        <li><a href="{{route('home.gallery')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> Galleries</a></li>
+                        <li><a href="{{route('home.abouts')}}"><i class="fa fa-caret-right" aria-hidden="true"></i> About us</a></li>
                     </ul>
                 </div>
             </div>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Pages\Home;
 use App\Models\Pages\Slider;
+use App\Models\Pages\AboutUs;
 
 class PagesController extends Controller
 {
@@ -151,6 +152,40 @@ class PagesController extends Controller
             'image2' => $imageName2,
             'image3' => $imageName3,
             'image4' => $imageName4,
+        ]);
+
+        return ['message' => 'Homepage has been Updated'];
+    }
+
+    public function getAboutUs()
+    {
+        //
+        return json_encode(DB::table('about_us')->first());
+    }
+
+    public function createAboutUs(Request $request)
+    {
+
+        $this->validate($request,[
+            'content' => 'required|string',
+        ]);
+
+        return AboutUs::create([
+            'content' => $request['content'],
+        ]);
+    }
+
+    public function updateAboutUs(Request $request)
+    {
+        //return $request;
+        $home = AboutUs::find($request->id);
+
+        $this->validate($request,[
+            'content' => 'required|string',
+        ]);
+
+        $home->update([
+            'content' => $request['content'],
         ]);
 
         return ['message' => 'Homepage has been Updated'];

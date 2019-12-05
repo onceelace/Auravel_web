@@ -33,6 +33,10 @@ Route::get('admin/pages/home', 'Admin\API\PagesController@getHomePage');
 Route::post('admin/pages/home', 'Admin\API\PagesController@createHomePage');
 Route::put('admin/pages/home', 'Admin\API\PagesController@updateHomePage');
 
+Route::get('admin/pages/aboutus', 'Admin\API\PagesController@getAboutUs');
+Route::post('admin/pages/aboutus', 'Admin\API\PagesController@createAboutUs');
+Route::put('admin/pages/aboutus', 'Admin\API\PagesController@updateAboutUs');
+
 Route::get('admin/pages/sliders', 'Admin\API\PagesController@getSliders');
 Route::get('admin/pages/sliders/{id}', 'Admin\API\PagesController@getSlider');
 Route::post('admin/pages/sliders', 'Admin\API\PagesController@createSlider');

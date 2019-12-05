@@ -40,7 +40,7 @@
         </li>
         <li class="nav-item mb-2">
             <router-link to="/admin/rooms" class="nav-link">
-                <i class="nav-icon fas fa-warehouse"></i>
+                <i class="nav-icon fas fa-door-closed"></i>
                 <p>Rooms</p>
             </router-link>
         </li>
@@ -57,27 +57,33 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item ml-2">
                     <router-link to="/admin/pages/home" class="nav-link">
-                    <i class="nav-icon fas fa-chart-line"></i>
+                    <i class="nav-icon fas fa-home"></i>
                     <p>Home</p>
                     </router-link>
                 </li>
                 <li class="nav-item ml-2">
                     <router-link to="/admin/pages/sliders" class="nav-link">
-                    <i class="nav-icon fas fa-chart-line"></i>
+                    <i class="nav-icon fas fa-exchange-alt"></i>
                     <p>Home Sliders</p>
                     </router-link>
                 </li>
                 <li class="nav-item ml-2">
-                    <router-link to="/inventory" class="nav-link">
-                    <i class="nav-icon fas fa-chart-line"></i>
+                    <router-link to="/admin/pages/abouts" class="nav-link">
+                    <i class="nav-icon fas fa-address-book"></i>
                     <p>About Us</p>
                     </router-link>
                 </li>
+                <!-- <li class="nav-item ml-2">
+                    <router-link to="/admin/pages/facilities" class="nav-link">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>Facilities</p>
+                    </router-link>
+                </li> -->
             </ul>
         </li>
         <li class="nav-item mb-2">
             <router-link to="/admin/gallery" class="nav-link">
-                <i class="nav-icon fas fa-warehouse"></i>
+                <i class="nav-icon fas fa-images"></i>
                 <p>Galleries</p>
             </router-link>
         </li>
@@ -93,7 +99,7 @@
         </li>
         <li class="nav-item mb-2">
             <router-link to="/admin/bookings" class="nav-link">
-                <i class="nav-icon fas fa-warehouse"></i>
+                <i class="nav-icon fas fa-clipboard"></i>
                 <p>Bookings</p>
             </router-link>
         </li>

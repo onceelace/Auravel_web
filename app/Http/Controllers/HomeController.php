@@ -54,6 +54,19 @@ class HomeController extends Controller
             ->with('galleries',$galleries);
     }
 
+    public function aboutUs()
+    {
+        $aboutUs = DB::table('about_us')->first();
+            
+        return view('home.abouts')
+            ->with('aboutUs',$aboutUs);
+    }
+
+    public function facilities()
+    {
+        return view('home.facilities');
+    }
+
 
     public function getRooms()
     {

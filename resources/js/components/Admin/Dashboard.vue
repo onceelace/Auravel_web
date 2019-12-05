@@ -31,19 +31,6 @@
             </div>
             <!-- /.info-box -->
           </div>
-
-          <div class="col-12 col-md-3">
-            <div class="info-box bg-info">
-              <div class="info-box-content">
-                <span class="info-box-text">For Check-out</span>
-                <span class="info-box-number">
-                  <h3>10</h3>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
           <!-- /.col -->
         </div>
         <div class="row">

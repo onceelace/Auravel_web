@@ -30,6 +30,8 @@ Route::post('/booking/payment', 'Customer\BookingController@payment')->name('boo
 Route::get('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 
 Route::get('/gallery', 'HomeController@gallery')->name('home.gallery');
+Route::get('/abouts', 'HomeController@aboutUs')->name('home.abouts');
+Route::get('/facilities', 'HomeController@facilities')->name('home.facilities');
 
 //CHECK IN
 // Route::get('/find/room', 'HomeController@checkroom')->name('room.check');
