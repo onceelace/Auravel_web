@@ -22,7 +22,7 @@
                             <a class="nav-link" href="{{route('home.rooms')}}">Rooms</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">3D Virtual Tour</a>
+                            <a class="nav-link" href="/tour/" target="_blank">3D Virtual Tour</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Facilities</a>

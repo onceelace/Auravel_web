@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
+                <router-link to="/admin" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                     Dashboard
@@ -98,6 +98,7 @@
             </router-link>
         </li>
         <li class="nav-header">Settings</li>
+        @if(Auth::user()->accounttype == 'Super Admin')
         <li class="nav-item">
             <router-link to="/admin/users" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
@@ -123,6 +124,8 @@
                 </li>
             </ul>
         </li>
+        @endif
+
         <li class="nav-item">
             <router-link to="/profile" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>

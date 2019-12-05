@@ -13,6 +13,8 @@ use Auth;
 use Cookie;
 use Session;
 
+use Stripe;
+
 use App\Models\Booking;
 use App\Models\Payment;
 
@@ -159,9 +161,9 @@ class BookingController extends Controller
                 }
 
 
-                // return view('booking.index')
-                //     ->with('booking', $booking);
-                return $booking;
+                return view('booking.index')
+                    ->with('booking', $booking);
+                //return $booking;
             }
 
             return redirect()->route('home.rooms');
@@ -172,10 +174,32 @@ class BookingController extends Controller
 
     public function payment(Request $request)
     {
+
         if($request->method() == 'POST'){
             $booking = session('bookingSession');
             if($booking)
             {
+                $amount = $booking['total'];
+
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                if($request->payment_status == 'Reservation')
+                {
+                    Stripe\Charge::create ([
+                        "amount" => 1000 * 100,
+                        "currency" => "php",
+                        "source" => $request->input('stripeToken'),
+                        "description" => "Room Booking Payment" 
+                    ]);
+                }else{
+                    Stripe\Charge::create ([
+                        "amount" => $amount * 100,
+                        "currency" => "php",
+                        "source" => $request->input('stripeToken'),
+                        "description" => "Room Booking Payment" 
+                     ]);
+                }
+                
+
                 $booked =  Booking::create([
                     'user_id' => (int)$booking['user']->id,
                     'check_in' => Carbon::parse($booking['checkIn'])->format('Y-m-d'),

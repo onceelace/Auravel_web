@@ -44,6 +44,18 @@ class BookingController extends Controller
         return $bookings;
     }
 
+    public function totalBooked()
+    {
+       return 'hey';
+    }
+
+    public function totalCheckIn()
+    {
+        return DB::table('bookings')
+        ->where('status','=','Checked-In')
+        ->count();
+    }
+
     public function bookingDetails($id)
     {
         $booking = DB::table('bookings')

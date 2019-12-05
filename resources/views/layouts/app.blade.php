@@ -75,6 +75,9 @@
     <script src="{{ asset('photoswipe/photoswipe-ui-default.min.js') }}"></script>
     <script src="{{ asset('photoswipe/photoswipeinit.js') }}"></script> 
 
+    
+    <script src="{{ asset('js/stripe-design.js') }}"></script>
+
 </body>
 
 </html>

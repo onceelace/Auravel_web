@@ -65,6 +65,9 @@ Vue.use(Loading);
 
 
 let routes = [
+
+    { path: '/admin', component: require('./components/Admin/Dashboard.vue').default },
+
     { path: '/admin/roomtypes', component: require('./components/Admin/RoomType/RoomTypes.vue').default },
     { path: '/admin/roomtypes/new', component: require('./components/Admin/RoomType/NewRoomType.vue').default },
     { path: '/admin/roomtypes/edit/:id', component: require('./components/Admin/RoomType/EditRoomType.vue').default },
