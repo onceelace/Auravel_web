@@ -2477,3 +2477,8 @@ html .ui-button.ui-state-disabled:active {
       margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */
+
+.section-padding-20-0 {
+  padding-top: 20px;
+  padding-bottom: 0;
+}

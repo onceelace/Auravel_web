@@ -49,7 +49,7 @@
     <!-- Partner Area End -->
 
     <!-- Footer Area Start -->
-    <footer class="footer-area section-padding-80-0 mt-50">
+    <footer class="footer-area section-padding-20-0 mt-50">
         <!-- Main Footer Area -->
         @component('components.footer')
         @endcomponent
