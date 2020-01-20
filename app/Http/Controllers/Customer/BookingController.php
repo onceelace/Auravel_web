@@ -12,6 +12,7 @@ use Auth;
 
 use Cookie;
 use Session;
+use Mail;
 
 use Stripe;
 
@@ -174,7 +175,6 @@ class BookingController extends Controller
 
     public function payment(Request $request)
     {
-
         if($request->method() == 'POST'){
             $booking = session('bookingSession');
             if($booking)
@@ -208,6 +208,7 @@ class BookingController extends Controller
                     'payment_status' => $request->payment_status,
                     'status' => 'Booked'
                 ]);
+
                 if($booked)
                 {
     
@@ -221,6 +222,36 @@ class BookingController extends Controller
                         'booking_id' => (int)$booked->id,
                         'amount' => $amount
                     ]);
+
+                    $to_name = $booking['user']->firstname." ".$booking['user']->lastname;
+                    $to_email = $booking['user']->email;
+            
+                    $emailBalance = 0;
+                    $emailTotalAmount = $booking['total'];
+                    if($request->payment_status == "Reservation")
+                    {
+                        $emailTotalAmount = 1000.00;
+                        $mailBalance = $booking['total'] - $emailTotalAmount;
+                    }
+            
+                    $data = array(
+                        "transationDate"=>$booked['created_at'],
+                        "customerName"=>$to_name,
+                        "check_in"=>$booking['checkIn'],
+                        "check_out"=>$booking['checkOut'],
+                        "numberOfDays"=>$booking['numberOfDays'],
+                        "payment_status"=>$request->payment_status,
+                        "roomType"=>$booking['availableRoomType']->name,
+                        "roomName"=>$booking['availableRoom']->name,
+                        "perDay"=>$booking['availableRoomType']->rate,
+                        "total"=>$booking['total'],
+                        "amountPaid"=>$emailTotalAmount,
+                        "balance"=>$emailBalance,
+                    );
+                    Mail::send('emails.emailreceipt', $data, function($message) use ($to_name, $to_email) {
+                        $message->to($to_email, $to_name)->subject('Booking Email Receipt');
+                        $message->from('auraveldev@gmail.com','Auravel Grande');
+                    });
     
                     Session::forget('bookingSession');
                     return view('booking.success')
