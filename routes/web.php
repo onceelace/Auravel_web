@@ -29,6 +29,9 @@ Route::get('/booking', 'Customer\BookingController@index')->name('booking');
 Route::post('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 Route::get('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 
+Route::get('/booking/history', 'Customer\BookingController@myBookings')->name('myBookings');
+Route::post('/booking/history', 'Customer\BookingController@cancelBooking')->name('cancelBooking');
+
 Route::get('/gallery', 'HomeController@gallery')->name('home.gallery');
 Route::get('/abouts', 'HomeController@aboutUs')->name('home.abouts');
 Route::get('/facilities', 'HomeController@facilities')->name('home.facilities');

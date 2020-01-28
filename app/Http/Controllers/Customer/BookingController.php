@@ -172,7 +172,45 @@ class BookingController extends Controller
         }
         
     }
+    public function myBookings()
+    {
+        $bookings = Booking::with('room','roomType')
+            ->where('user_id','=',Auth::id())
+            ->paginate(10);
 
+        return view('booking.history')
+        ->with('bookings', $bookings);
+    }
+    public function cancelBooking(Request $request)
+    {
+        $booking = Booking::find($request->roomTypeId);
+        if($booking)
+        {
+            $booking->update([
+                'status' => 'Cancelled'
+            ]);
+
+            $to_name = Auth::user()->firstname." ".Auth::user()->lastname;
+            $to_email = Auth::user()->email;
+    
+            $data = array(
+                "customerName"=>$to_name,
+            );
+            Mail::send('emails.cancelbooking', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject('Booking Cancelled');
+                $message->from('auraveldev@gmail.com','Auravel Grande');
+            });
+
+            $request->session()->flash('message.level', 'success');
+        }
+        $bookings = Booking::with('room','roomType')
+        ->where('user_id','=',Auth::id())
+        ->paginate(10);
+        
+
+        return view('booking.history')
+            ->with('bookings', $bookings);
+    }
     public function payment(Request $request)
     {
         if($request->method() == 'POST'){
@@ -205,6 +243,7 @@ class BookingController extends Controller
                     'check_in' => Carbon::parse($booking['checkIn'])->format('Y-m-d'),
                     'check_out' => Carbon::parse($booking['checkOut'])->format('Y-m-d'),
                     'room_id' => (int)$booking['availableRoom']->id,
+                    'room_type_id' => (int)$booking['availableRoomType']->id,
                     'payment_status' => $request->payment_status,
                     'status' => 'Booked'
                 ]);

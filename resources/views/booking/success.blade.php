@@ -27,11 +27,12 @@
         <div class="row">
             <div class="col-12 col-lg-8">
                 <div class="single-room-area d-flex align-items-center mb-50">
-                    <div class="row">
+                    <div class="row w-100">
                         <div class="col-8 col-offset-2">
                             @if($message == 'Success')
                                 <div class="alert alert-success" role="alert">
                                     <h3>Booking Succesful.</h3>
+                                    <a href="{{ route('myBookings') }}"><i class="fa fa-calendar"></i> See My Bookings</a>
                                     <p>Thank you for booking with us</p>
                                 </div>
                             @endif

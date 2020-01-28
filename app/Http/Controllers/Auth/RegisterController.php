@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Cookie;
+use Session;
+use Mail;
+
 class RegisterController extends Controller
 {
     /*
@@ -67,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'contactnumber' => $data['contactnumber'],
@@ -76,5 +80,23 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+        if($user)
+        {
+            $to_name = $data['firstname']." ".$data['lastname'];
+            $to_email = $data['email'];
+
+    
+            $data = array(
+                "customerName"=>$to_name,
+            );
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject('Welcome to Auravel Grande Hotel and Resort');
+                $message->from('auraveldev@gmail.com','Auravel Grande');
+            });
+        }
+
+        return $user;
     }
 }
