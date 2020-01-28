@@ -1,9 +1,9 @@
 <div class="main-footer-area">
     <div class="container">
-        <div class="row align-items-baseline justify-content-between">
+        <div class="row align-items-baseline justify-content-between" style="min-height: 260px;">
             <!-- Single Footer Widget Area -->
             <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget mb-80">
+                <div class="single-footer-widget">
                     <!-- Footer Logo -->
                     <a href="#" class="footer-logo"><img src="{{ asset('img/core-img/B.png') }}" alt=""></a>
 
@@ -15,7 +15,7 @@
 
             <!-- Single Footer Widget Area -->
             <div class="col-12 col-sm-4 col-lg-2">
-                <div class="single-footer-widget mb-80">
+                <div class="single-footer-widget">
                     <!-- Widget Title -->
                     <h5 class="widget-title">Links</h5>
 
@@ -32,7 +32,7 @@
 
             <!-- Single Footer Widget Area -->
             <div class="col-12 col-sm-8 col-lg-4">
-                <div class="single-footer-widget mb-80">
+                <div class="single-footer-widget">
                     <!-- Widget Title -->
                     <h5 class="widget-title">Subscribe Newsletter</h5>
                     <span>Subscribe our newsletter gor get notification about new updates.</span>
