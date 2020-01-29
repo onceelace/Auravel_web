@@ -43,6 +43,7 @@ Route::post('admin/pages/sliders', 'Admin\API\PagesController@createSlider');
 Route::put('admin/pages/sliders/{id}', 'Admin\API\PagesController@updateSlider');
 Route::delete('admin/pages/sliders/{id}', 'Admin\API\PagesController@deleteSlider');
 
+
 Route::apiResources([
     'admin/roomtype' => 'Admin\API\RoomTypeController',
     'admin/room' => 'Admin\API\RoomController',
@@ -52,4 +53,3 @@ Route::apiResources([
     'admin/gallery' => 'Admin\API\GalleryController',
     'admin/user' => 'Admin\API\UserController'
 ]);
-

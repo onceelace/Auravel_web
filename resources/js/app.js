@@ -98,6 +98,7 @@ let routes = [
     { path: '/admin/customers', component: require('./components/Admin/Customer/Customers.vue').default },
 
     { path: '/admin/users', component: require('./components/Admin/Users/Users.vue').default },
+    { path: '/admin/users/profile', component: require('./components/Admin/Users/Profile.vue').default },
     { path: '/admin/users/new', component: require('./components/Admin/Users/NewUser.vue').default },
 ]
 
