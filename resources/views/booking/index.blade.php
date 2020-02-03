@@ -243,7 +243,7 @@
                         <h4>PHP {{number_format($booking['availableRoomType']->rate,2)}}<span>/ Day</span></h4>
                         <div class="room-feature">
                             <h6>Size: <span>{{$booking['availableRoomType']->roomsize}}</span></h6>
-                            <h6>Capacity: <span>Max persion {{$booking['availableRoomType']->max_occupant}}</span></h6>
+                            <h6>Capacity: <span>Max person {{$booking['availableRoomType']->max_occupant}}</span></h6>
                         </div>
                     </div>
                 </div>

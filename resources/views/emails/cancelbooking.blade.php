@@ -429,7 +429,7 @@
   <![endif]-->
   </head>
   <body>
-    <span class="preheader">Your booking has been canceled by your request.</span>
+    <span class="preheader">Your booking has been cancelled by your request.</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
@@ -450,7 +450,7 @@
                     <td class="content-cell">
                       <div class="f-fallback">
                         <h1>Hi {{$customerName}},</h1>
-                        <p>This is a confirmation that your Booking in Auravel Grande Hotel and Resort has been canceled at your request.</p>
+                        <p>This is a confirmation that your Booking in Auravel Grande Hotel and Resort has been cancelled at your request.</p>
                         <br>
                         <p>Thank you.</p>
                         <p><br>The Auravel Grande Team</p>

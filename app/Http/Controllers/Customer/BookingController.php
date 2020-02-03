@@ -176,7 +176,7 @@ class BookingController extends Controller
         if($booking)
         {
             $booking->update([
-                'status' => 'Canceled'
+                'status' => 'Cancelled'
             ]);
 
             $to_name = Auth::user()->firstname." ".Auth::user()->lastname;
@@ -186,7 +186,7 @@ class BookingController extends Controller
                 "customerName"=>$to_name,
             );
             Mail::send('emails.cancelbooking', $data, function($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)->subject('Booking Canceled');
+                $message->to($to_email, $to_name)->subject('Booking Cancelled');
                 $message->from('auraveldev@gmail.com','Auravel Grande');
             });
 
