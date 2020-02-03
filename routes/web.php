@@ -26,6 +26,7 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 //Booking
 Route::post('/booking', 'Customer\BookingController@index')->name('booking');
 Route::get('/booking', 'Customer\BookingController@index')->name('booking');
+Route::post('/booking/addmattress', 'Customer\BookingController@addMattress')->name('addMattress');
 Route::post('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 Route::get('/booking/payment', 'Customer\BookingController@payment')->name('booking.payment');
 

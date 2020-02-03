@@ -76,11 +76,11 @@
                 <div class="row justify-content-between align-items-end">
                     <div class="col-6 col-md-2 col-lg-3">
                         <label for="checkIn">Check In</label>
-                        <input type="date" class="form-control" id="checkIn" name="checkIn" required>
+                        <input type="text" class="form-control" id="checkIn" name="checkIn" required>
                     </div>
                     <div class="col-6 col-md-2 col-lg-3">
                         <label for="checkOut">Check Out</label>
-                        <input type="date" class="form-control" id="checkOut" name="checkOut" required>
+                        <input type="text" class="form-control" id="checkOut" name="checkOut" required>
                     </div>
                     <div class="col-4 col-md-1">
                         <label for="adults">Adult</label>

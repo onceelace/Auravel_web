@@ -115,14 +115,14 @@
         </li>
         @endif
 
-        <!-- <li class="nav-item">
-            <router-link to="/admin/users/profile" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+        <li class="nav-item">
+            <router-link to="/admin/reports" class="nav-link">
+            <i class="fas fa-chart-line"></i>
                 <p>
-                Profile
+                Reports
                 </p>
             </router-link>
-        </li> -->
+        </li>
         <li class="nav-item">
             {{-- <a href="/profile" class="nav-link">
                 <i class="nav-icon fas fa-power-off"></i>

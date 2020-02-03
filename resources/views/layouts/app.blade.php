@@ -22,6 +22,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 </head>
@@ -59,6 +60,7 @@
     <!-- **** All JS Files ***** -->
     <!-- jQuery 2.2.4 -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <!-- Popper -->
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -77,6 +79,8 @@
 
     
     <script src="{{ asset('js/stripe-design.js') }}"></script>
+
+    <script src="{{ asset('js/script.js') }}"></script>
 
 </body>
 

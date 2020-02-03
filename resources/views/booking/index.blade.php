@@ -292,11 +292,22 @@
                             <dt class="col-md-6 col-sm-12">Rate</dt>
                             <dd class="col-md-6 col-sm-12"><strong>PHP {{number_format($booking['availableRoomType']->rate,2)}}</strong></dd>
                         </dl>
-                        <!-- <dl class="row">
-                            <dt class="col-md-7 col-sm-12">Reservation</dt>
-                            <dd class="col-md-5  col-sm-12"><strong><h5>PHP 1,000.00</h5></strong></dd>
+                        
+                        <h5>Add-ons</h5>
+                        <dl class="row">
+                          <dt class="col-md-6 col-sm-12">Mattress<p><small>PHP 550.00 x</small></p></dt>
+                          <dd class="col-md-6 col-sm-12">
+                          <form method="POST" action="{{ route('addMattress') }}">
+                                @csrf
+                                <input id="mattress" name="mattress" type="number" class="form-control" min="0" placeholder="Quantity" value="{{$booking['mattress']}}" />
+                            </form>
                             
-                        </dl> -->
+                          </dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-md-6 col-sm-12">Mattress</dt>
+                            <dd class="col-md-6  col-sm-12"><strong><h5>PHP {{number_format($booking['mattress_amount'],2)}}</h5></strong></dd>
+                        </dl>
                         <dl class="row">
                             <dt class="col-md-6 col-sm-12">TOTAL</dt>
                             <dd class="col-md-6  col-sm-12"><strong><h5>PHP {{number_format($booking['total'],2)}}</h5></strong></dd>

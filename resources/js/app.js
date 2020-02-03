@@ -44,6 +44,7 @@ const vueProgressBarOption = {
 }
 Vue.use(VueProgressBar, vueProgressBarOption)
 
+
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
 window.Swal = Swal;
@@ -62,7 +63,17 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 // Init plugin
 Vue.use(Loading);
 
-
+Vue.filter('toCurrency', function (value) {
+    if (typeof value !== "number") {
+        return value;
+    }
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'PHP',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(value);
+});
 
 let routes = [
 
@@ -79,6 +90,8 @@ let routes = [
     { path: '/admin/bookings', component: require('./components/Admin/Booking/Bookings.vue').default },
     { path: '/admin/bookings/Calendar', component: require('./components/Admin/Booking/CalendarView.vue').default },
     { path: '/admin/bookings/details/:id', component: require('./components/Admin/Booking/BookingDetails.vue').default },
+
+    { path: '/admin/reports', component: require('./components/Admin/Reports/BoookingReport.vue').default },
 
     //PAGES
     { path: '/admin/pages/home', component: require('./components/Admin/Pages/Home.vue').default },

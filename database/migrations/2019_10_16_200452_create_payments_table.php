@@ -16,7 +16,12 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('booking_id')->nullable()->unsigned();
-            $table->integer('amount')->nullable()->unsigned();
+            $table->integer('mattress')->default(0);
+            $table->decimal('mattress_amount', 8, 2);
+            $table->decimal('reservation', 8, 2);
+            $table->decimal('amount', 8, 2);
+            $table->decimal('totalamount', 8, 2);
+            $table->decimal('amountpaid', 8, 2);
             $table->timestamps();
         });
     }

@@ -44,6 +44,21 @@ class BookingController extends Controller
         return $bookings;
     }
 
+    public function bookingReports()
+    {
+        $from = Input::get('from');
+        $to = Input::get('to');
+        $bookings = DB::table('bookings')
+        ->join('users', 'bookings.user_id', '=', 'users.id')
+        ->join('rooms', 'bookings.room_id', '=', 'rooms.id')
+        ->join('payments', 'bookings.id', '=', 'payments.booking_id')
+        ->select('bookings.*', 'rooms.name as roomName', 'users.firstname as firstname', 'users.lastname as lastname', 'users.email as email','payments.mattress as mattressQty', 'payments.mattress_amount as mattressAmount','payments.reservation as reservation','payments.amount as amount','payments.totalamount as totalamount','payments.amountpaid as amountpaid')
+        ->whereBetween('bookings.created_at',[$from, $to])
+        ->orderBy('bookings.check_in', 'desc')
+        ->get();
+        return $bookings;
+    }
+
     public function totalBooked()
     {
        return 'hey';

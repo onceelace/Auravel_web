@@ -98,24 +98,9 @@ class BookingController extends Controller
                 ->where('id','=',(int)$request->roomTypeId)
                 ->first();
 
-            // $getFirstRoom = DB::table('rooms')
-            // ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-            // ->select('rooms.*')
-            // ->where('rooms.room_type_id','=',(int)$request->roomTypeId)
-            // ->whereNotBetween('bookings.check_in', $datefilters )
-            // ->whereNotBetween('bookings.check_out', $datefilters )
-            // ->first();
             $getFirstRoom = $this->filterRoom((int)$request->roomTypeId,$datefilters);
 
-            //return $getFirstRoom;
-
             $user = Auth::user();
-
-            //Save cookie
-            // Cookie::queue('availableRoomType', json_encode($roomType),60);
-            // Cookie::queue('availableRoom', json_encode($getFirstRoom),60);
-            // Cookie::queue('bookedUser', json_encode($user),60);
-
 
             $dateFrom = Carbon::parse($request->checkIn);
             $dateTo = Carbon::parse($request->checkOut);
@@ -138,7 +123,10 @@ class BookingController extends Controller
                 'checkIn' => $request->checkIn,
                 'checkOut' => $request->checkOut,
                 'numberOfDays' => $numberOfDays,
+                'mattress' => $request->mattress,
+                'mattress_amount' => $request->mattress_amount,
                 'amountPerDay' => $amountPerDay,
+                'amount' => $total,
                 'total' => $total
             ];
 
@@ -172,6 +160,7 @@ class BookingController extends Controller
         }
         
     }
+
     public function myBookings()
     {
         $bookings = Booking::with('room','roomType')
@@ -187,7 +176,7 @@ class BookingController extends Controller
         if($booking)
         {
             $booking->update([
-                'status' => 'Cancelled'
+                'status' => 'Canceled'
             ]);
 
             $to_name = Auth::user()->firstname." ".Auth::user()->lastname;
@@ -197,7 +186,7 @@ class BookingController extends Controller
                 "customerName"=>$to_name,
             );
             Mail::send('emails.cancelbooking', $data, function($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)->subject('Booking Cancelled');
+                $message->to($to_email, $to_name)->subject('Booking Canceled');
                 $message->from('auraveldev@gmail.com','Auravel Grande');
             });
 
@@ -211,13 +200,48 @@ class BookingController extends Controller
         return view('booking.history')
             ->with('bookings', $bookings);
     }
+
+    public function addMattress(Request $request)
+    {
+        if (Session::has('bookingSession'))
+        {
+            
+            $booking = session('bookingSession');
+
+            $booking['mattress'] = $request->mattress;
+
+            $user = $booking['user'];
+            if(Auth::id() != $user->id)
+            {
+                Session::forget('bookingSession');
+                return redirect()->route('home.rooms');
+            }
+
+            $booking['mattress_amount'] = $booking['mattress'] * 550;
+
+            $booking['total'] = $booking['mattress_amount'] + $booking['amount'];
+
+            session([
+                'bookingSession' => $booking
+            ]);
+
+
+            // return view('booking.index')
+            //     ->with('booking', $booking);
+            //return $booking;
+        }
+
+        return redirect()->route('booking');
+            
+    }
+
     public function payment(Request $request)
     {
         if($request->method() == 'POST'){
             $booking = session('bookingSession');
             if($booking)
             {
-                $amount = $booking['total'];
+                $total = $booking['total'];
 
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 if($request->payment_status == 'Reservation')
@@ -230,7 +254,7 @@ class BookingController extends Controller
                     ]);
                 }else{
                     Stripe\Charge::create ([
-                        "amount" => $amount * 100,
+                        "amount" => $total * 100,
                         "currency" => "php",
                         "source" => $request->input('stripeToken'),
                         "description" => "Room Booking Payment" 
@@ -250,16 +274,22 @@ class BookingController extends Controller
 
                 if($booked)
                 {
-    
-                    $amount = $booking['total'];
+                    $reservationAmount = 0;
+                    $amountPaid = $booking['total'];
                     if($request->payment_status == 'Reservation')
                     {
-                        $amount = 1000;
+                        $amountPaid = 1000;
+                        $reservationAmount = 1000;
                     }
-    
+
                     $payment = Payment::create([
                         'booking_id' => (int)$booked->id,
-                        'amount' => $amount
+                        'amount' => $booking['amount'],
+                        'totalamount' => $booking['total'],
+                        'mattress' => $booking['mattress'],
+                        'mattress_amount' => $booking['mattress_amount'],
+                        'reservation' => $reservationAmount,
+                        'amountpaid' => $amountPaid
                     ]);
 
                     $to_name = $booking['user']->firstname." ".$booking['user']->lastname;
@@ -270,7 +300,7 @@ class BookingController extends Controller
                     if($request->payment_status == "Reservation")
                     {
                         $emailTotalAmount = 1000.00;
-                        $mailBalance = $booking['total'] - $emailTotalAmount;
+                        $emailBalance = $booking['total'] - $emailTotalAmount;
                     }
             
                     $data = array(
@@ -284,6 +314,9 @@ class BookingController extends Controller
                         "roomName"=>$booking['availableRoom']->name,
                         "perDay"=>$booking['availableRoomType']->rate,
                         "total"=>$booking['total'],
+                        "amount"=>$payment["amount"],
+                        "mattress"=>$payment["mattress"],
+                        "mattress_amount"=>$payment["mattress_amount"],
                         "amountPaid"=>$emailTotalAmount,
                         "balance"=>$emailBalance,
                     );

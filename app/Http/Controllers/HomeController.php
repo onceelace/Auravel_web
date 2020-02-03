@@ -70,73 +70,14 @@ class HomeController extends Controller
 
     public function getRooms()
     {
-        
         $checkInDate = date("2019-10-20");
         $checkOutDate = date("2019-10-21");
 
         $datefilters=[$checkInDate,$checkOutDate];
 
-        // $availableRoomType = DB::table('room_types')
-        //         ->join('rooms','rooms.room_type_id','=','room_types.id')
-        //         ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-        //         ->select('room_types.*')
-        //         ->whereBetween('bookings.check_in', $datefilters )
-        //         ->orWhereBetween('bookings.check_out', $datefilters )
-        //         ->get();
-
-        // $eventsCount = Booking::where(function ($query) use ($checkInDate, $checkOutDate) {
-        //     $query->where(function ($query) use ($checkInDate, $checkOutDate) {
-        //        $query->where('check_in', '>=', $checkInDate)
-        //                ->where('check_out', '<', $checkInDate);
-        //        })
-        //        ->orWhere(function ($query) use ($checkInDate, $checkOutDate) {
-        //            $query->where('check_in', '<', $checkOutDate)
-        //                    ->where('check_out', '>=', $checkOutDate);
-        //        });
-        //    })->get();
-
-        // $availableRoomType = DB::table('room_types')
-        //         ->join('rooms','rooms.room_type_id','=','room_types.id')
-        //         ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-        //         ->select('room_types.*')
-        //         ->whereNotBetween('bookings.check_in', $datefilters )
-        //         ->whereNotBetween('bookings.check_out', $datefilters )
-        //         ->get();
         $start = $checkInDate;
         $end = $checkOutDate;
 
-        // $a = DB::table('room_types')->join('rooms', function($join){
-        //     $join->on('room_types.id','=','rooms.room_type_id');
-
-        // })->get();
-        
-        
-
-        // $availableRoomType = DB::table('room_types')->where(function ($query) use ($start, $end) {
-
-        //     $query->join('rooms','rooms.room_type_id','=','room_types.id')
-        //     ->leftJoin('bookings','rooms.id','=','bookings.room_id')
-        //     ->select('room_types.*');
-
-        //     $query->where(function ($q) use ($start, $end) {
-        //         $q->where('bookings.check_in', '>=', $start)
-        //            ->where('bookings.check_in', '<', $end);
-        
-        //     })->orWhere(function ($q) use ($start, $end) {
-        //         $q->where('bookings.check_in', '<=', $start)
-        //            ->where('bookings.check_out', '>', $end);
-        
-        //     })->orWhere(function ($q) use ($start, $end) {
-        //         $q->where('bookings.check_out', '>', $start)
-        //            ->where('bookings.check_out', '<=', $end);
-        
-        //     })->orWhere(function ($q) use ($start, $end) {
-        //         $q->where('bookings.check_in', '>=', $start)
-        //            ->where('bookings.check_out', '<=', $end);
-        //     });
-        
-        // })->get();
-                
         $returnRoomTypes = $this->filterRoomType(0,$datefilters);
         return $returnRoomTypes;
     }
@@ -263,6 +204,11 @@ class HomeController extends Controller
             //return $availableRoomType;
 
         }else{
+
+            $request->checkIn = Carbon::now()->format('m/d/Y');
+
+            $request->checkOut = Carbon::now()->addDays(1)->format('m/d/Y');
+
             $roomTypes = DB::table('room_types')
             ->select('*')
             ->orderBy('rate','asc')

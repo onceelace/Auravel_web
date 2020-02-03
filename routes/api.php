@@ -42,7 +42,7 @@ Route::get('admin/pages/sliders/{id}', 'Admin\API\PagesController@getSlider');
 Route::post('admin/pages/sliders', 'Admin\API\PagesController@createSlider');
 Route::put('admin/pages/sliders/{id}', 'Admin\API\PagesController@updateSlider');
 Route::delete('admin/pages/sliders/{id}', 'Admin\API\PagesController@deleteSlider');
-
+Route::get('admin/booking/reports', 'Admin\API\BookingController@bookingReports');
 
 Route::apiResources([
     'admin/roomtype' => 'Admin\API\RoomTypeController',

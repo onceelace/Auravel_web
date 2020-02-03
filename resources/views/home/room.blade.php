@@ -50,11 +50,13 @@
                             @if($isFiltered == true)
                             <form method="POST" action="{{ route('booking') }}">
                                 @csrf
-                                <input type="hidden" name="roomTypeId" id="roomTypeId" value="{{$roomtype->id}}">
-                                <input type="hidden" name="checkIn" id="checkIn" value="{{ $finddata->checkIn }}">
-                                <input type="hidden" name="checkOut" id="checkOut" value="{{ $finddata->checkOut }}">
-                                <input type="hidden" name="adults" id="adults" value="{{ $finddata->adults }}">
-                                <input type="hidden" name="children" id="children" value="{{ $finddata->children }}">
+                                <input type="hidden" name="mattress" id="mattress" value="0">
+                                <input type="hidden" name="mattress_amount" id="mattress_amount" value="0">
+                                <input type="hidden" name="roomTypeId" id="roomTypeId{{$roomtype->id}}" value="{{$roomtype->id}}">
+                                <input type="hidden" name="checkIn" id="hdncheckIn{{$roomtype->id}}" value="{{ $finddata->checkIn }}">
+                                <input type="hidden" name="checkOut" id="hdncheckOut{{$roomtype->id}}" value="{{ $finddata->checkOut }}">
+                                <input type="hidden" name="adults" id="adults{{$roomtype->id}}" value="{{ $finddata->adults }}">
+                                <input type="hidden" name="children" id="children{{$roomtype->id}}" value="{{ $finddata->children }}">
                                 <button class="btn btn-success">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                             </form>
                             @endif
@@ -81,11 +83,14 @@
                         <div class="form-group mb-30">
                             <div class="col-12 mb-20 p-0">
                                 <label for="checkIn">Check In</label>
-                                <input type="date" class="form-control" id="checkIn" name="checkIn" value="{{ $finddata->checkIn }}" required>
+                                <!-- <input id="checkIn" type="text" class="form-control clickable input-md" id="checkIn" placeholder="&#xf133; Check-In"  value="{{ $finddata->checkIn }}" required> -->
+<!-- </div> -->
+                                <input type="text" class="form-control DateFrom" placeholder="mm/dd/yyyy" id="checkIn" name="checkIn" value="{{ $finddata->checkIn }}" required>
                             </div>
                             <div class="col-12 p-0">
                                 <label for="checkOut">Check Out</label>
-                                <input type="date" class="form-control" id="checkOut" name="checkOut" value="{{ $finddata->checkOut }}" required>
+                                <!-- <input id="checkOut" type="text" class="form-control clickable input-md" id="checkOut" placeholder="&#xf133;  Check-Out" value="{{ $finddata->checkOut }}" required> -->
+                                <input type="text" class="form-control clickable" placeholder="mm/dd/yyyy" id="checkOut" name="checkOut" value="{{ $finddata->checkOut }}" required>
                             </div>
                         </div>
                         <div class="form-group mb-30">

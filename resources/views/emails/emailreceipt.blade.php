@@ -501,6 +501,25 @@
                                   <td width="50%" class="purchase_item"><span class="f-fallback">{{$roomType}} - {{$roomName}}</span></td>
                                   <td class="align-right" width="35%" class="purchase_item"><span class="f-fallback">PHP {{$perDay}}</span></td>
                                 </tr>
+                                
+                                <tr>
+                                  <td width="15%" class="purchase_footer"></td>
+                                  <td width="50%" class="purchase_footer" valign="middle">
+                                    <p class="f-fallback purchase_total purchase_total--label">Amount</p>
+                                  </td>
+                                  <td width="35%" class="purchase_footer" valign="middle">
+                                    <p class="f-fallback purchase_total">PHP {{$amount}}</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td width="15%" class="purchase_footer"></td>
+                                  <td width="50%" class="purchase_footer" valign="middle">
+                                    <p class="f-fallback purchase_total purchase_total--label">{{$mattress}} Mattress</p>
+                                  </td>
+                                  <td width="35%" class="purchase_footer" valign="middle">
+                                    <p class="f-fallback purchase_total">PHP {{$mattress_amount}}</p>
+                                  </td>
+                                </tr>
                                 <tr>
                                   <td width="15%" class="purchase_footer"></td>
                                   <td width="50%" class="purchase_footer" valign="middle">
@@ -532,6 +551,7 @@
                             </td>
                           </tr>
                         </table>
+                        <p>No refund policy.</p>
                         <p>If you have any questions about this receipt, simply reply to this email or send an email to auraveldev@gmail.com.</p>
                         <p>Cheers,
                           <br>The Auravel Grande Team</p>

@@ -6,7 +6,7 @@
                 <div class="row justify-content-between align-items-end">
                     <div class="col-6 col-md-2 col-lg-3">
                         <label for="checkIn">Check In</label>
-                        <input id="checkIn" type="date" class="form-control @error('checkIn') is-invalid @enderror" name="checkIn" value="{{ old('checkIn') }}" required autocomplete="checkIn" autofocus>
+                        <input id="checkIn" type="text" class="form-control @error('checkIn') is-invalid @enderror" name="checkIn" value="{{ old('checkIn') }}" required autocomplete="checkIn" autofocus>
                         @error('checkIn')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-6 col-md-2 col-lg-3">
                         <label for="checkOut">Check Out</label>
-                        <input id="checkOut" type="date" class="form-control @error('checkOut') is-invalid @enderror" name="checkOut" value="{{ old('checkOut') }}" required autocomplete="checkOut" autofocus>
+                        <input id="checkOut" type="text" class="form-control @error('checkOut') is-invalid @enderror" name="checkOut" value="{{ old('checkOut') }}" required autocomplete="checkOut" autofocus>
                         @error('checkOut')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

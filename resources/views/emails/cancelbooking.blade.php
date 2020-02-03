@@ -429,7 +429,7 @@
   <![endif]-->
   </head>
   <body>
-    <span class="preheader">Your booking has been cancelled by your request.</span>
+    <span class="preheader">Your booking has been canceled by your request.</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
