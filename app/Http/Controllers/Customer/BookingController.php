@@ -295,12 +295,10 @@ class BookingController extends Controller
                     $to_name = $booking['user']->firstname." ".$booking['user']->lastname;
                     $to_email = $booking['user']->email;
             
-                    $emailBalance = 0;
-                    $emailTotalAmount = $booking['total'];
+                    $balance = 0;
                     if($request->payment_status == "Reservation")
                     {
-                        $emailTotalAmount = 1000.00;
-                        $emailBalance = $booking['total'] - $emailTotalAmount;
+                        $balance = $booking['total'] - 1000;
                     }
             
                     $data = array(
@@ -317,8 +315,8 @@ class BookingController extends Controller
                         "amount"=>$payment["amount"],
                         "mattress"=>$payment["mattress"],
                         "mattress_amount"=>$payment["mattress_amount"],
-                        "amountPaid"=>$emailTotalAmount,
-                        "balance"=>$emailBalance,
+                        "amountPaid"=>$amountPaid,
+                        "balance"=>$balance,
                     );
                     Mail::send('emails.emailreceipt', $data, function($message) use ($to_name, $to_email) {
                         $message->to($to_email, $to_name)->subject('Booking Email Receipt');

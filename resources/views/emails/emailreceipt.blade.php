@@ -551,7 +551,11 @@
                             </td>
                           </tr>
                         </table>
-                        <p>No refund policy.</p>
+                        <p><b>Cancellation/No Show Policy:</b></p>
+                        <p>Once a reservation is confirmed, cancellation of the booking at least 3 days before arrival  to avoid a charge of 1 night’s stay to be imposed for full payment. Reservartion fee is non-refundable.</p>
+
+<br>
+
                         <p>If you have any questions about this receipt, simply reply to this email or send an email to auraveldev@gmail.com.</p>
                         <p>Cheers,
                           <br>The Auravel Grande Team</p>
